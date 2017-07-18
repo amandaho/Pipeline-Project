@@ -1,5 +1,6 @@
 .mainContent {
     margin-top: 10px;
+    margin-bottom: 30px;
 }
 
 md-sidenav {
@@ -57,3 +58,13 @@ md-sidenav.mat-sidenav-closed {
 /* md-sidenav.mat-sidenav-closed ~ .mat-sidenav-content {
   margin-left: 60px !important;
 }  */
+agm-map {
+  height: 600px;
+}
+
+#map{
+  width: 95%;
+  /* margin-bottom: 20px; */
+  margin-left: auto;
+  margin-right: auto;
+}
