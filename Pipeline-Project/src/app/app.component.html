@@ -1,5 +1,65 @@
 <!--The whole content below can be removed with the new code.-->
-<app-h-navigation></app-h-navigation>
-<div class="container mainContent">
-  <app-home></app-home>
-</div>
+
+<!-- New Angular Materials Navigation Bar -->
+<md-toolbar color="primary">
+
+  <img class="App-logo pull-left" src="../../assets/HiveLogo.ico">
+  <span>The Hive</span>
+
+  <button md-icon-button (click)="start.toggle()">
+    <md-icon>dehaze</md-icon>
+  </button>
+
+  <span class="spacer"></span>
+  Contact Us
+  <button md-icon-button [mdMenuTriggerFor]="menu">
+    <md-icon>live_help</md-icon>
+  </button>
+
+  <md-menu #menu="mdMenu"> 
+      <button md-menu-item disabled>
+        <md-icon>comment</md-icon>
+        <span>Live Chat</span>
+      </button>
+      <button md-menu-item disabled>
+        <md-icon>contact_phone</md-icon>
+        <span>Phone</span>
+      </button>
+      <button md-menu-item>
+        <md-icon>contact_mail</md-icon>
+        <span>Email</span>
+      </button>
+    </md-menu>
+</md-toolbar>
+
+
+<!-- Angular Materials Sidebar -->
+<md-sidenav-container class="demo-sidenav-container tall">
+  <md-sidenav #start mode="side">
+    <button md-menu-item>
+      <md-icon>home</md-icon>
+      <span>Home</span>
+    </button>
+    <button md-menu-item>
+      <md-icon>account_circle</md-icon>
+      <span>Login</span>
+    </button>    
+    <button md-menu-item>
+      <md-icon>map</md-icon>
+      <span>Map</span>
+    </button>
+    <button md-menu-item>
+      <md-icon>insert_chart</md-icon>
+      <span>Dashboard</span>
+    </button>
+    <button md-menu-item>
+      <md-icon>settings</md-icon>
+      <span>Admin</span>
+    </button>    
+  </md-sidenav>
+
+  <div class="container mainContent">
+    <app-home></app-home>
+  </div> 
+
+</md-sidenav-container>

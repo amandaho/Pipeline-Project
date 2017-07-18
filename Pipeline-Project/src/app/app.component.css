@@ -1,3 +1,59 @@
 .mainContent {
-    margin-top: 75px;
+    margin-top: 10px;
 }
+
+md-sidenav {
+  width: 200px;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40px;
+  margin-right: 15px;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* md-sidenav {
+    width: 200px;
+} */
+
+/* Below is for testing purposes only */
+
+/*left sidenav style override*/ 
+/* md-sidenav { 
+    background-color: #3f51b5;  
+    overflow: hidden; 
+    color: #e6e8f5 !important;
+} 
+
+md-sidenav button, md-sidenav md-icon {
+    color: #e6e8f5 !important;
+}
+ */
+
+ md-sidenav {
+  width: 200px;
+  background-color: #3f51b5; 
+  color: #e6e8f5 !important;
+}
+
+md-sidenav md-icon, md-sidenav button {
+  padding-right: 20px !important;
+  color: #e6e8f5 !important;
+}
+/* 
+
+md-sidenav.mat-sidenav-closed {
+  transform: translate3d(0, 0, 0) !important; 
+  visibility: visible !important;
+  min-width: 60px !important;
+  width: 60px !important;
+} */
+
+/* md-sidenav.mat-sidenav-closed ~ .mat-sidenav-content {
+  margin-left: 60px !important;
+}  */
