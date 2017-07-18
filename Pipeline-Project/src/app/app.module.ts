@@ -3,18 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HNavigationComponent } from './h-navigation/h-navigation.component';
-import { VNagivationComponent } from './v-nagivation/v-nagivation.component';
 import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HNavigationComponent,
-    VNagivationComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
