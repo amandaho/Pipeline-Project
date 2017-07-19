@@ -13,12 +13,22 @@ import { AgmCoreModule } from '@agm/core';
 import { HiveService } from './hive.service';
 import { HttpModule } from '@angular/http';
 import { NavigationComponent } from './navigation/navigation.component';
+import { MapComponent } from './map/map.component';
+import { StatusMessageComponent } from './status-message/status-message.component';
+import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NavigationComponent,
+    MapComponent,
+    StatusMessageComponent,
+    LoginComponent,
+    DashboardComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

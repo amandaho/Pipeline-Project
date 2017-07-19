@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HiveService } from './hive.service'
 
-import {Directive, EventEmitter, OnChanges, OnDestroy, SimpleChange,
-  AfterContentInit, ContentChildren, QueryList, Input, Output
-} from '@angular/core';
+// import {Directive, EventEmitter, OnChanges, OnDestroy, SimpleChange,
+//   AfterContentInit, ContentChildren, QueryList, Input, Output
+// } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +15,7 @@ import {Directive, EventEmitter, OnChanges, OnDestroy, SimpleChange,
 export class AppComponent implements OnInit{
   
   markers: any;
+  errorMessage: string;
 
   constructor(private HiveService: HiveService){
   }
@@ -23,21 +24,19 @@ export class AppComponent implements OnInit{
     this.HiveService.getRecords()
       .subscribe(
           markers => {
-            this.markers = markers
-            // console.log(this.markers)       
-      }
-    );
+            this.markers = markers          
+      },
+        error =>  {
+          this.errorMessage = <any>error; 
+          console.log(this.errorMessage)
+          this.errorMessage= "There is an error connecting to the API";
+        });
+          
   }
 
   clickedMarker(marker:marker){
     console.log('Clicked Marker: '+marker.id)
   }
-
-  //Zoom level
-  zoom: number = 11;
-  //Start Position
-  lat: number = 37.75134;
-  lng: number = -122.39488;
 
 
 ngOnInit() {

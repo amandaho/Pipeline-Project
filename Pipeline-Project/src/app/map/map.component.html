@@ -1,0 +1,26 @@
+<div id="map">
+    <agm-map 
+      [latitude]="lat" 
+      [longitude]="lng"
+      [zoom]="zoom"
+      [disableDefaultUI]=false
+      [zoomControl]=true
+      [fullscreenControl]=true
+      [mapTypeControl]=true>
+
+      <agm-marker
+        *ngFor="let m of location;let i = index"
+        (markerClick)="clickedMarker(m,i)"  
+        [latitude]="m.lati" 
+        [longitude]="m.longi"
+        [iconUrl]="(m.status == '1') ? 'http://maps.google.com/mapfiles/kml/pal4/icon15.png' : 'http://maps.google.com/mapfiles/kml/pal4/icon62.png'">
+      
+      <agm-info-window>
+        <strong>{{m.id}}</strong>
+        <hr>Latitude: {{m.lati}} <br /> Longitude: {{m.longi}}
+        <br /> Vehicle Status: {{m.status}}
+
+      </agm-info-window>
+      </agm-marker>
+    </agm-map>
+  </div>
