@@ -18,6 +18,8 @@ import { StatusMessageComponent } from './status-message/status-message.componen
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminComponent } from './admin/admin.component';
+import { RouterModule }   from '@angular/router';
+import { PageRoutingModule } from './page/page-routing.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,7 @@ import { AdminComponent } from './admin/admin.component';
     StatusMessageComponent,
     LoginComponent,
     DashboardComponent,
-    AdminComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +39,7 @@ import { AdminComponent } from './admin/admin.component';
     MaterialModule,
     BrowserAnimationsModule,
     HttpModule,
+    PageRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCK35x5jSnSEfukM5AtISDXjyODWbSaLcg'
     })
