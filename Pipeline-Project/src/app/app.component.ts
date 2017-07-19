@@ -24,7 +24,7 @@ export class AppComponent implements OnInit{
       .subscribe(
           markers => {
             this.markers = markers
-            console.log(this.markers)       
+            // console.log(this.markers)       
       }
     );
   }

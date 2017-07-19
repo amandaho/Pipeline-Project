@@ -18,7 +18,7 @@ md-sidenav {
   to { transform: rotate(360deg); }
 }
 
-/* md-sidenav {
+ /* md-sidenav {
     width: 200px;
 } */
 
@@ -34,7 +34,7 @@ md-sidenav {
 md-sidenav button, md-sidenav md-icon {
     color: #e6e8f5 !important;
 }
- */
+  */
 
  md-sidenav {
   width: 175px;
@@ -47,7 +47,7 @@ md-sidenav md-icon, md-sidenav button {
   color: #e6e8f5 !important;
 }
 
-/* md-sidenav.mat-sidenav-closed {
+ /* md-sidenav.mat-sidenav-closed {
   transform: translate3d(0, 0, 0) !important; 
   visibility: visible !important;
   min-width: 50px !important;
@@ -56,7 +56,7 @@ md-sidenav md-icon, md-sidenav button {
 
 md-sidenav.mat-sidenav-closed ~ .mat-sidenav-content {
   margin-left: 60px !important;
-}   */
+}    */
 
 agm-map {
   height: 600px;

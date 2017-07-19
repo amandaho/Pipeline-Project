@@ -1,10 +1,8 @@
-<!--The whole content below can be removed with the new code.-->
-
 <!-- New Angular Materials Navigation Bar -->
-<app-navigation></app-navigation>
-
+<app-navigation (navToggle)="start.toggle()"></app-navigation>
 
 <!-- Angular Materials Sidebar -->
+
 <md-sidenav-container class="demo-sidenav-container tall">
   <md-sidenav #start mode="side">
     <button md-menu-item>
@@ -30,43 +28,7 @@
   </md-sidenav>
 
   <div class="container mainContent">
-    <!-- <app-home></app-home> -->
-
-    <div style="text-align:center">
-      <h1>
-        Welcome to the Hive!
-      </h1>
-    </div>
-
-    <!-- this creates a google map on the page with the given lat/lng from -->
-    <!-- the component as the initial center of the map: -->
-    <div id="map">
-    <agm-map 
-      [latitude]="lat" 
-      [longitude]="lng"
-      [zoom]="zoom"
-      [disableDefaultUI]=false
-      [zoomControl]=true
-      [fullscreenControl]=true
-      [mapTypeControl]=true>
-
-      <agm-marker
-        *ngFor="let m of markers;let i = index"
-        (markerClick)="clickedMarker(m,i)"  
-        [latitude]="m.lati" 
-        [longitude]="m.longi"
-        [iconUrl]="(m.status == '1') ? 'http://maps.google.com/mapfiles/kml/pal4/icon62.png' : 'http://maps.google.com/mapfiles/kml/pal4/icon15.png'">
-      
-      <agm-info-window>
-        <strong>{{m.id}}</strong>
-        <hr>Latitude: {{m.lati}} <br /> Longitude: {{m.longi}}
-        <br /> Vehicle Status: {{m.status}}
-
-      </agm-info-window>
-      </agm-marker>
-    </agm-map>
-    </div>
-
+    <app-home></app-home> 
   </div> 
 
 </md-sidenav-container>

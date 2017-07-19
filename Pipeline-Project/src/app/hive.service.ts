@@ -27,7 +27,7 @@ export class HiveService {
   }
 
     private extractData(res: Response) {
-    let results = res.json();
+      let results = res.json();
     return results || [];
   }
 
