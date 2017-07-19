@@ -14,6 +14,9 @@ import { HiveService } from './hive.service';
 import { HttpModule } from '@angular/http';
 import { MapComponent } from './map/map.component';
 import { StatusMessageComponent } from './status-message/status-message.component';
+import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,9 @@ import { StatusMessageComponent } from './status-message/status-message.componen
     HomeComponent,
     MapComponent,
     StatusMessageComponent,
+    LoginComponent,
+    DashboardComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
