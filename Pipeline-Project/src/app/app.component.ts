@@ -23,7 +23,8 @@ export class AppComponent implements OnInit{
     this.HiveService.getRecords()
       .subscribe(
           markers => {
-            this.markers = markers          
+            this.markers = markers
+            console.log(this.markers)       
       }
     );
   }
@@ -40,8 +41,11 @@ export class AppComponent implements OnInit{
 
 
 ngOnInit() {
-
-    this.getLocation();
+  // this.getLocation();
+  //   setInterval(() => {
+      this.getLocation();
+    // }, 3000);
+    
    
   }
 
