@@ -8,18 +8,20 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class HiveService {
 
-  private baseUrl: string = 'https://ancient-chamber-80519.herokuapp.com/api/testdata';
+//   private baseUrl: string = 'https://ancient-chamber-80519.herokuapp.com/api/testdata';
+  private baseUrl: string = 'https://ancient-chamber-80519.herokuapp.com/api/updatelocations';
 
   constructor(private http: Http) { }
 
-  // getRecords(): Observable<any[]> {
-  //     return Observable.timer(0, 5000)
-  //       // .interval(5000)
-  //       .flatMap(() => {
-  //       return this.http.get(this.baseUrl)
-  //           .map(this.extractData)
-  //       })
-  // }
+//   getRecords(): Observable<any[]> {
+//       return Observable
+//         // .timer(0, 5000)
+//         .interval(10000)
+//         .flatMap(() => {
+//         return this.http.get(this.baseUrl)
+//             .map(this.extractData)
+//         })
+//   }
 
   getRecords(): Observable<any[]> {
         return this.http.get(this.baseUrl)
