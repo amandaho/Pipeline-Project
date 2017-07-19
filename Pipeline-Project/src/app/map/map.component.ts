@@ -24,11 +24,11 @@ export class MapComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.map.emit();
   }
 
   getMarkers(){
     this.map.emit();
-
   }
 
 }

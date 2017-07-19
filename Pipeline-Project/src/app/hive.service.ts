@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class HiveService {
 
-  private baseUrl: string = 'https://ancient-chamber-80519.herokuapp.com/api/updatelocations';
+  private baseUrl: string = 'https://ancient-chamber-80519.herokuapp.com/api/testdata';
 
   constructor(private http: Http) { }
 

@@ -4,10 +4,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { RouterModule }   from '@angular/router';
 
 import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
+// import { AppRoutingModule } from './routing/routing.module';
+import { routes } from './routing/app.router';
 
 import { AgmCoreModule } from '@agm/core';
 import { HiveService } from './hive.service';
@@ -18,6 +21,7 @@ import { StatusMessageComponent } from './status-message/status-message.componen
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminComponent } from './admin/admin.component';
+
 
 @NgModule({
   declarations: [
@@ -37,6 +41,7 @@ import { AdminComponent } from './admin/admin.component';
     MaterialModule,
     BrowserAnimationsModule,
     HttpModule,
+    routes,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCK35x5jSnSEfukM5AtISDXjyODWbSaLcg'
     })
