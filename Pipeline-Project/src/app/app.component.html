@@ -67,35 +67,13 @@
       </h1>
     </div>
 
+    <app-status-message [errorMessage]='errorMessage'></app-status-message>
+
     <!-- this creates a google map on the page with the given lat/lng from -->
     <!-- the component as the initial center of the map: -->
-    <div id="map">
-    <agm-map 
-      [latitude]="lat" 
-      [longitude]="lng"
-      [zoom]="zoom"
-      [disableDefaultUI]=false
-      [zoomControl]=true
-      [fullscreenControl]=true
-      [mapTypeControl]=true>
-
-      <agm-marker
-        *ngFor="let m of markers;let i = index"
-        (markerClick)="clickedMarker(m,i)"  
-        [latitude]="m.lati" 
-        [longitude]="m.longi"
-        [iconUrl]="(m.status == '1') ? 'http://maps.google.com/mapfiles/kml/pal4/icon62.png' : 'http://maps.google.com/mapfiles/kml/pal4/icon15.png'">
-      
-      <agm-info-window>
-        <strong>{{m.id}}</strong>
-        <hr>Latitude: {{m.lati}} <br /> Longitude: {{m.longi}}
-        <br /> Vehicle Status: {{m.status}}
-
-      </agm-info-window>
-      </agm-marker>
-    </agm-map>
-    </div>
-
-  </div> 
+    <app-map (map)='getLocation()' [location]='markers'></app-map> 
+  
+</div> 
 
 </md-sidenav-container>
+

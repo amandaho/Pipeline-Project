@@ -14,12 +14,28 @@ export class HiveService {
 
   getRecords(): Observable<any[]> {
         return this.http.get(this.baseUrl)
-            .map(this.extractData)
+          .map(this.extractData)
+          .catch(this.handleError)
   }
 
     private extractData(res: Response) {
     let results = res.json();
     return results || [];
   }
+
+  private handleError(error: Response | any) {
+        // In a real world app, you might use a remote logging infrastructure
+        let errMsg: string;
+        if (error instanceof Response) {
+            if(error.status === 0){
+                errMsg = "Error connecting to API"
+            }else{
+                const errorJSON = error.json();
+                errMsg = `${errorJSON.code} - ${errorJSON.message}`;
+            } 
+        }
+        
+        return Observable.throw(errMsg);
+    }
 
 }

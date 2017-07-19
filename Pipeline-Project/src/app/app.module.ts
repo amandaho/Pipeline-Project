@@ -12,11 +12,15 @@ import 'hammerjs';
 import { AgmCoreModule } from '@agm/core';
 import { HiveService } from './hive.service';
 import { HttpModule } from '@angular/http';
+import { MapComponent } from './map/map.component';
+import { StatusMessageComponent } from './status-message/status-message.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    MapComponent,
+    StatusMessageComponent,
   ],
   imports: [
     BrowserModule,
