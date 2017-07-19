@@ -6,17 +6,19 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
 import { MaterialModule } from '@angular/material';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
 
 import { AgmCoreModule } from '@agm/core';
 import { HiveService } from './hive.service';
 import { HttpModule } from '@angular/http';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,
