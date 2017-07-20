@@ -1,0 +1,24 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+}
+
+.example-card {
+    border-radius: 5px;
+}
+
+.row md-card,
+.row md-card .md-card {
+  height: 100%;
+}
+
+.row md-card .md-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.row md-card .md-card md-card-content {
+  flex-grow: 1;
+}
+
