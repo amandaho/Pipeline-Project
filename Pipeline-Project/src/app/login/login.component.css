@@ -17,8 +17,10 @@
 }
 
 .testCenter {
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
+    color: #3f51b5;
 }
 
 .profile-img
