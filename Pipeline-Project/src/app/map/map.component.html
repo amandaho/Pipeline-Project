@@ -1,3 +1,10 @@
+<button md-raised-button (click)="onClick()" ng-click="reset()" ng-disabled="!buttonEnabled">
+	<md-icon>autorenew</md-icon>
+	<span>Refresh</span>
+</button>
+
+<h4 id="countDown"><md-icon>timer</md-icon> Auto Refresh In: {{mapTimer}}</h4>
+
 <div id="map">
     <agm-map 
       [latitude]="lat" 
@@ -9,7 +16,7 @@
       [mapTypeControl]=true>
 
       <agm-marker
-        *ngFor="let m of location;let i = index"
+        *ngFor="let m of markers;let i = index"
         (markerClick)="clickedMarker(m,i)"  
         [latitude]="m.lati" 
         [longitude]="m.longi"

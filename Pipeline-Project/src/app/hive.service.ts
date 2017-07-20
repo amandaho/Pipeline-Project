@@ -13,15 +13,15 @@ export class HiveService {
 
   constructor(private http: Http) { }
 
-//   getRecords(): Observable<any[]> {
-//       return Observable
-//         // .timer(0, 5000)
-//         .interval(10000)
-//         .flatMap(() => {
-//         return this.http.get(this.baseUrl)
-//             .map(this.extractData)
-//         })
-//   }
+  // getRecords(): Observable<any[]> {
+  //     return Observable
+  //       // .timer(0, 5000)
+  //       .interval(10000)
+  //       .flatMap(() => {
+  //       return this.http.get(this.baseUrl)
+  //           .map(this.extractData)
+  //       })
+  // }
 
   getRecords(): Observable<any[]> {
         return this.http.get(this.baseUrl)

@@ -1,0 +1,36 @@
+.profile-img
+{
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block; 
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.loginForm {
+    width: 100%;
+}
+
+.inputForm {
+    width: 100%;
+}
+
+.submitForm {
+    width: 100%;
+    /* align-self: center; */
+    background-color: #3f51b5;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+    padding-bottom: 5px;
+}
+
+.testCenter {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    color: #3f51b5;
+
+}
