@@ -26,6 +26,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminComponent } from './admin/admin.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
+import { AddCarComponent } from './add-car/add-car.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { CreateAccountComponent } from './create-account/create-account.componen
     DashboardComponent,
     AdminComponent,
     CreateAccountComponent,
+    AddCarComponent,
   ],
   imports: [
     BrowserModule,

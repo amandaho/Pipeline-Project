@@ -12,13 +12,38 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
 })
 export class CreateAccountComponent implements OnInit {
 
+  enterPassWord: string;
+  confirmPassWord: string;
+
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.pattern(EMAIL_REGEX)]);
+
+  passFormControl = new FormControl('', [
+    Validators.required
+  ]);
 
   constructor() { }
 
   ngOnInit() {
   }
+
+  onSubmit(c: FormControl) {
+    console.log(this.enterPassWord);
+    console.log(this.confirmPassWord)
+    return this.enterPassWord.localeCompare(this.confirmPassWord) ? null : {
+      onSubmit : {
+        valid : false
+      }
+    }
+  }
+
+    // if (this.enterPassWord == this.confirmPassWord){
+    //     return null;
+    //   } else {
+    //    return valid: false;
+       
+    //   }
+
 
 }

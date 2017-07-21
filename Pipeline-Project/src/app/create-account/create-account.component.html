@@ -17,13 +17,20 @@
             </md-input-container>
             <br />
             <md-input-container class="inputForm">
-              <input mdInput placeholder="Password">
+              <input [(ngModel)]="enterPassWord" type="password" mdInput placeholder="Password" [formControl]="passFormControl">
+              <md-icon mdSuffix>mode_edit</md-icon>
+               <md-error *ngIf="passFormControl.hasError('required')">
+                A password is <strong>required</strong>
+            </md-error> 
+            </md-input-container>
+            <md-input-container class="inputForm">
+              <input [(ngModel)]="confirmPassWord" type="password" mdInput placeholder="Confirm Password" [formControl]="passFormControl">
               <md-icon mdSuffix>mode_edit</md-icon>
             </md-input-container>
           </form>
         </md-card-content>
         <md-card-actions class="testCenter">
-          <button md-raised-button class="submitForm">Submit</button>
+          <button (click)="onSubmit()" md-raised-button class="submitForm">Submit</button>
         </md-card-actions>
       </md-card>
       <button md-button routerLink="/login" class="testCenter">Already have an account? Return to Login.</button>

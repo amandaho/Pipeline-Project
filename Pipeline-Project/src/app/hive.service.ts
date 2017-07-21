@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 export class HiveService {
 
 //   private baseUrl: string = 'https://ancient-chamber-80519.herokuapp.com/api/testdata';
-  private baseUrl: string = 'https://ancient-chamber-80519.herokuapp.com/api/updatelocations';
+  private baseUrl: string = 'https://ancient-chamber-80519.herokuapp.com/api/';
 
   constructor(private http: Http) { }
 
@@ -23,11 +23,21 @@ export class HiveService {
   //       })
   // }
 
-  getRecords(): Observable<any[]> {
-        return this.http.get(this.baseUrl)
+  getRecords(endpoint: string): Observable<any[]> {
+    let apiUrl = `${this.baseUrl}${endpoint}`;
+        return this.http.get(apiUrl)
           .map(this.extractData)
           .catch(this.handleError)
   }
+
+  addRecord(endpoint: string, record:object): Observable<object> {
+        let apiUrl = `${this.baseUrl}${endpoint}`;
+        console.log(apiUrl)
+        console.log(record)
+        return this.http.post(apiUrl, record)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
 
     private extractData(res: Response) {
       let results = res.json();

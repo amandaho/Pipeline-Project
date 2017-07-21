@@ -1,0 +1,42 @@
+<div [ngClass]="(errorMessage)?'alert alert-danger':'alert alert-success'" role="alert" *ngIf="errorMessage || successMessage">
+    {{errorMessage}} {{successMessage}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="container">
+   <div class="row">
+     <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">
+      <md-card>
+        <md-card-content>
+          <img class="profile-img img-circle" src="../assets/bee4-1.gif">
+          <form #addCar="ngForm" class="loginForm" (ngSubmit)="saveDriver(driver.vid)">
+            <md-input-container class="inputForm">
+              <input [(ngModel)]="driver.driver_first_name" mdInput placeholder="Driver First Name" id="driver_first_name" name="driver_first_name">
+              <md-icon mdSuffix>mode_edit</md-icon>
+            </md-input-container>
+            <br />
+            <md-input-container class="inputForm">
+              <input [(ngModel)]="driver.driver_last_name" mdInput placeholder="Driver Last Name" id="driver_last_name" name="driver_last_name">
+              <md-icon mdSuffix>mode_edit</md-icon>
+            </md-input-container>
+            <md-input-container class="inputForm">
+              <input [(ngModel)]="driver.vehicle_year" mdInput placeholder="Vehicle Year" id="vehicle_year" name="vehicle_year">
+              <md-icon mdSuffix>mode_edit</md-icon>
+            </md-input-container>
+            <md-input-container class="inputForm">
+              <input [(ngModel)]="driver.vehicle_make" mdInput placeholder="Vehicle Make" id="vehicle_make" name="vehicle_make">
+              <md-icon mdSuffix>mode_edit</md-icon>
+            </md-input-container>
+            <md-input-container class="inputForm">
+              <input [(ngModel)]="driver.vehicle_model" mdInput placeholder="Vehicle Model" id="vehicle_model" name="vehicle_model">
+              <md-icon mdSuffix>mode_edit</md-icon>
+            </md-input-container>
+            <button md-raised-button class="submitForm">Submit</button>
+          </form>
+        </md-card-content>
+      </md-card>
+    </div>
+  </div>
+</div>

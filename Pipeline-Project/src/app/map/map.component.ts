@@ -33,7 +33,7 @@ export class MapComponent implements OnInit {
   }
 
   getLocation(){
-    this.HiveService.getRecords()
+    this.HiveService.getRecords("updatelocations")
       .subscribe(
           markers => {
             this.markers = markers     
