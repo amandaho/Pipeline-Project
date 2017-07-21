@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
   }
 
   emailFormControl = new FormControl('', [
-  Validators.required,
-  Validators.pattern(EMAIL_REGEX)]);
+    Validators.required,
+    Validators.pattern(EMAIL_REGEX)
+  ]);
 
 }

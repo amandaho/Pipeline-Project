@@ -6,18 +6,18 @@
           <img class="profile-img img-circle" src="../assets/bee4-1.gif">
           <form class="loginForm">
             <md-input-container class="inputForm">
-              <input mdInput placeholder="Email Address" [formControl]="emailFormControl">
+              <input type="email" mdInput placeholder="Email Address" [formControl]="emailFormControl">
               <md-icon mdSuffix>mode_edit</md-icon>
-              <md-error *ngIf="emailFormControl.hasError('pattern')">
+               <md-error *ngIf="emailFormControl.hasError('pattern')">
                 Please enter a valid email address
-              </md-error>
+              </md-error> 
               <md-error *ngIf="emailFormControl.hasError('required')">
                 Email is <strong>required</strong>
             </md-error>
             </md-input-container>
             <br />
             <md-input-container class="inputForm">
-              <input mdInput placeholder="Password">
+              <input mdInput placeholder="Password" type="password">
               <md-icon mdSuffix>mode_edit</md-icon>
             </md-input-container>
           </form>
