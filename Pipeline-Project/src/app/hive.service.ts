@@ -23,13 +23,25 @@ export class HiveService {
   //       })
   // }
 
-  getRecords(endpoint: string): Observable<any[]> {
-    let apiUrl = `${this.baseUrl}${endpoint}`;
-        return this.http.get(apiUrl)
+//   getRecords(endpoint: string): Observable<any[]> {
+//     let apiUrl = `${this.baseUrl}${endpoint}`;
+//         return this.http.get(apiUrl)
+//   }
+
+  getRecords(endpoint:string): Observable<any[]> {
+    let apiUrl = `${this.baseUrl}${endpoint}`    
+    return this.http.get(apiUrl)
           .map(this.extractData)
           .catch(this.handleError)
   }
 
+   getRecord(endpoint: string, id): Observable<object> {
+    let apiUrl = `${this.baseUrl}${endpoint}/${id}`;
+    return this.http.get(apiUrl)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+        
   addRecord(endpoint: string, record:object): Observable<object> {
         let apiUrl = `${this.baseUrl}${endpoint}`;
         console.log(apiUrl)
@@ -37,6 +49,20 @@ export class HiveService {
         return this.http.post(apiUrl, record)
             .map(this.extractData)
             .catch(this.handleError);
+    }
+
+    editRecord(endpoint: string, record:object, id:number): Observable<object> {
+        let apiUrl = `${this.baseUrl}${endpoint}/${id}`;
+        console.log(record)
+        record = this.clean_request_body(record);
+        console.log(apiUrl)
+        return this.http.put(apiUrl, record)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    clean_request_body(request_body) {
+        return JSON.parse(JSON.stringify(request_body).replace(/\"\"/g, null))
     }
 
     private extractData(res: Response) {

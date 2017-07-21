@@ -21,7 +21,10 @@
                         </md-input-container>
 
                         <md-input-container class="inputForm">
-                            <input mdInput placeholder="Password">
+                            <input mdInput placeholder="Password" [formControl]="emailFormControl">
+                            <md-error *ngIf="emailFormControl.hasError('required')">
+                                Password is <strong>required</strong>
+                            </md-error>       
                             <md-icon mdSuffix>mode_edit</md-icon>
                         </md-input-container>
                     </form>
@@ -29,7 +32,7 @@
                 </md-card-content>
 
                 <md-card-actions class="testCenter">
-                    <button md-raised-button class="submitForm">Sign In</button>
+                    <button md-raised-button class="submitForm" type="submit">Sign In</button>
                 </md-card-actions>
 
             </md-card>

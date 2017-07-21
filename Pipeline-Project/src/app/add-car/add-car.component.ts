@@ -1,6 +1,6 @@
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, ViewChild }      from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Location }               from '@angular/common';
 import { NgForm } from '@angular/forms';
 
@@ -24,25 +24,37 @@ export class AddCarComponent implements OnInit {
     vehicle_year: <number> null,
   };
 
+  
+
   addCar: NgForm;
   @ViewChild('addCar') currentForm: NgForm;
 
-  constructor(private hiveService: HiveService){}
+
+  constructor(
+    private hiveService: HiveService, 
+    private router: Router, 
+    private route: ActivatedRoute
+    ) {}
 
   ngOnInit() {
-
     
   }
 
-  saveDriver(){
-   
+  saveDriver(id){
+    if(typeof id === "number"){
+      this.hiveService.editRecord("addDriver", this.driver, id)
+          .subscribe(
+            driver => this.successMessage = "Record updated succesfully",
+            error =>  this.errorMessage = <any>error);
+    }else {
       this.hiveService.addRecord("addDriver", this.driver)
           .subscribe(
             driver => this.successMessage = "Record added succesfully",
-            error =>  this.errorMessage = <any>error);
-            
+            error =>  this.errorMessage = <any>error);      
             
     }
+          // this.router.navigate(['/admin'])
+  }        
 
 
 }

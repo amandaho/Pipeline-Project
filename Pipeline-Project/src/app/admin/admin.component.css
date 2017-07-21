@@ -1,0 +1,32 @@
+.text-center {
+    min-width:250px;
+    padding: 0;
+}
+
+ .adminBtn {
+    background-color: #3f51b5 !important;
+    color: white; 
+    margin: 5px 5px 5px 5px;
+} 
+
+.adminTable {
+    border-radius: 5px;
+}
+
+.float_rt {
+    /* width: 100%; */
+    float: right;
+}
+
+.test {
+    width: 100%;
+    /* border: 1px solid red; */
+}
+
+.fill-space {
+  flex: 1 1 auto;
+}
+
+.cardHeading {
+    background-color: inherit !important;
+}

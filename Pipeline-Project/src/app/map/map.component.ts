@@ -22,13 +22,13 @@ export class MapComponent implements OnInit {
   constructor(private HiveService: HiveService){}
 
   ngOnInit() {
-  this.getLocation();
-    setInterval(() => {
-      this.getLocation();
-    }, 30000);
-    setInterval(() => {
-    this.autoRefresh();
-  }, 1000);
+    this.getLocation();
+      setInterval(() => {
+        this.getLocation();
+      }, 30000);
+      setInterval(() => {
+      this.autoRefresh();
+    }, 1000);
 
   }
 
@@ -57,7 +57,6 @@ export class MapComponent implements OnInit {
     } else {
       this.mapTimer = 30;
     }
-      
   }
 
   clickedMarker(marker:marker){
@@ -78,4 +77,3 @@ interface marker {
   lng: number;
   status: string;
 }
-

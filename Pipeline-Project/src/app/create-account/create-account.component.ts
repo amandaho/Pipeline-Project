@@ -17,7 +17,9 @@ export class CreateAccountComponent implements OnInit {
 
   emailFormControl = new FormControl('', [
     Validators.required,
-    Validators.pattern(EMAIL_REGEX)]);
+    Validators.pattern(EMAIL_REGEX),
+    Validators.nullValidator
+  ]);
 
   passFormControl = new FormControl('', [
     Validators.required

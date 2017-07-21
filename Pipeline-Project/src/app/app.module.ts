@@ -10,7 +10,7 @@ import { RouterModule }   from '@angular/router';
 import { MdCardModule } from '@angular/material';
 
 import { MaterialModule } from '@angular/material';
-import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'hammerjs';
 // import { AppRoutingModule } from './routing/routing.module';
 import { routes } from './routing/app.router';
