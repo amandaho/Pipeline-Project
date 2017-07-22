@@ -17,11 +17,11 @@ export class AddCarComponent implements OnInit {
   successMessage: string;
   errorMessage: string;
   driver = {
-    driver_first_name: <string> null,
-    driver_last_name: <string> null,
-    vehicle_make: <string> null,
-    vehicle_model: <string> null,
-    vehicle_year: <number> null,
+    // driver_first_name: <string> null,
+    // driver_last_name: <string> null,
+    // vehicle_make: <string> null,
+    // vehicle_model: <string> null,
+    // vehicle_year: <number> null,
   };
 
   
@@ -53,6 +53,7 @@ export class AddCarComponent implements OnInit {
             error =>  this.errorMessage = <any>error);      
             
     }
+          this.driver = {};
           // this.router.navigate(['/admin'])
   }        
 
