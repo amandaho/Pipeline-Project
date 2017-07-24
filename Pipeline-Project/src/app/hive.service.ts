@@ -65,10 +65,17 @@ export class HiveService {
         return JSON.parse(JSON.stringify(request_body).replace(/\"\"/g, null))
     }
 
-    private extractData(res: Response) {
-      let results = res.json();
-    return results || [];
-  }
+   private extractData(res: Response) {
+        let results = false
+        try{
+            results = res.json();
+        }catch(e){
+            if(res.status !== 200){
+                return Observable.throw(e);
+            }
+        }
+        return results || [];
+    }
 
   private handleError(error: Response | any) {
         // In a real world app, you might use a remote logging infrastructure
@@ -81,8 +88,34 @@ export class HiveService {
                 errMsg = `${errorJSON.code} - ${errorJSON.message}`;
             } 
         }
-        
         return Observable.throw(errMsg);
+    }
+
+  addUser(endpoint: string, record:object): Observable<object> {
+        let apiUrl = `${this.baseUrl}${endpoint}`;
+        return this.http.post(apiUrl, record)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    login(endpoint: string, record:object) {
+        let apiUrl = `${this.baseUrl}${endpoint}`;
+        return this.http.post(apiUrl, record)
+            // .map((response: Response) => {
+            //     // login successful if there's a jwt token in the response
+            //     let user = this.extractData;
+                // let user = response.json();
+                // if (user && user.token) {
+                //     // store user details and jwt token in local storage to keep user logged in between page refreshes
+                //     localStorage.setItem('currentUser', JSON.stringify(user));
+                // })
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    logout() {
+        // remove user from local storage to log user out
+        localStorage.removeItem('currentUser');
     }
 
 }

@@ -1,36 +1,45 @@
 <div class="container">
+
    <div class="row">
      <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">
       <md-card>
+        <md-card-title >
+          <div class="smallText" [ngClass]="(errorMessage)?'alert alert-danger':'alert alert-success'" role="alert" *ngIf="errorMessage || successMessage">
+              {{errorMessage}} {{successMessage}}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>     
+        </md-card-title>
+
+        <md-card-header>
+          <img md-card-image class="profile-img img-circle" src="../assets/bee4-1.gif">
+        </md-card-header>
+
         <md-card-content>
-          <img class="profile-img img-circle" src="../assets/bee4-1.gif">
           <form class="loginForm">
             <md-input-container class="inputForm">
-              <input type="email" mdInput placeholder="Email Address" [formControl]="emailFormControl">
+              <input [(ngModel)]="user.email" type="email" mdInput placeholder="Email Address" [formControl]="emailFormControl">
               <md-icon mdSuffix>mode_edit</md-icon>
                <md-error *ngIf="emailFormControl.hasError('pattern')">
                 Please enter a valid email address
               </md-error> 
               <md-error *ngIf="emailFormControl.hasError('required')">
                 Email is <strong>required</strong>
-            </md-error>
+              </md-error>
             </md-input-container>
             <br />
             <md-input-container class="inputForm">
-              <input [(ngModel)]="enterPassWord" type="password" mdInput placeholder="Password" [formControl]="passFormControl">
+              <input  [(ngModel)]="user.password_hash" type="password" mdInput placeholder="Password" [formControl]="passFormControl">
               <md-icon mdSuffix>mode_edit</md-icon>
                <md-error *ngIf="passFormControl.hasError('required')">
                 A password is <strong>required</strong>
             </md-error> 
             </md-input-container>
-            <md-input-container class="inputForm">
-              <input [(ngModel)]="confirmPassWord" type="password" mdInput placeholder="Confirm Password" [formControl]="passFormControl">
-              <md-icon mdSuffix>mode_edit</md-icon>
-            </md-input-container>
           </form>
         </md-card-content>
         <md-card-actions class="testCenter">
-          <button (click)="onSubmit()" md-raised-button class="submitForm">Submit</button>
+          <button (click)="onSubmit()" md-raised-button class="submitForm">Sign Up!</button>
         </md-card-actions>
       </md-card>
       <button md-button routerLink="/login" class="testCenter">Already have an account? Return to Login.</button>
