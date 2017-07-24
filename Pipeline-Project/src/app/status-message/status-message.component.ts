@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class StatusMessageComponent implements OnInit {
 
   @Input() errorMessage: string;
+  @Input() successMessage: string;
 
   constructor() { }
 

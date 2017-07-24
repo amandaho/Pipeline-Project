@@ -11,15 +11,22 @@
       <md-card>
         <md-card-content>
           <img class="profile-img img-circle" src="../assets/bee4-1.gif">
-          <form #addCar="ngForm" class="loginForm" (ngSubmit)="saveDriver(driver.vid)">
+          <form #addCar="ngForm" class="loginForm" (ngSubmit)="saveDriver(driver.vid)" >
+            <input [(ngModel)]="driver.vid" type="hidden" name="vid">
             <md-input-container class="inputForm">
-              <input [(ngModel)]="driver.driver_first_name" mdInput placeholder="Driver First Name" id="driver_first_name" name="driver_first_name">
+              <input [(ngModel)]="driver.driver_first_name" mdInput placeholder="Driver First Name" id="driver_first_name" name="driver_first_name" [formControl]="firstFormControl">
               <md-icon mdSuffix>mode_edit</md-icon>
+               <md-error *ngIf="firstFormControl.hasError('minlength')">
+                Please enter a first name that is at least 2 letters.
+              </md-error> 
             </md-input-container>
             <br />
             <md-input-container class="inputForm">
-              <input [(ngModel)]="driver.driver_last_name" mdInput placeholder="Driver Last Name" id="driver_last_name" name="driver_last_name">
+              <input [(ngModel)]="driver.driver_last_name" mdInput placeholder="Driver Last Name" id="driver_last_name" name="driver_last_name" [formControl]="lastFormControl">
               <md-icon mdSuffix>mode_edit</md-icon>
+              <md-error *ngIf="lastFormControl.hasError('minlength')">
+                Please enter a last name that is at least 2 letters.
+              </md-error> 
             </md-input-container>
             <md-input-container class="inputForm">
               <input [(ngModel)]="driver.vehicle_year" mdInput placeholder="Vehicle Year" id="vehicle_year" name="vehicle_year">
@@ -33,10 +40,11 @@
               <input [(ngModel)]="driver.vehicle_model" mdInput placeholder="Vehicle Model" id="vehicle_model" name="vehicle_model">
               <md-icon mdSuffix>mode_edit</md-icon>
             </md-input-container>
-            <button md-raised-button class="submitForm">Submit</button>
+            <button md-raised-button type="submit" class="submitForm" novalidate>Submit</button>
           </form>
         </md-card-content>
       </md-card>
+      <button md-button routerLink="/admin" class="testCenter">Return to Admin</button>
     </div>
   </div>
 </div>

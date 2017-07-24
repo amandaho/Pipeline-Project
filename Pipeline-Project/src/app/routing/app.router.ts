@@ -20,8 +20,10 @@ const router: Routes = [
   { path: 'dashboard',  component: DashboardComponent },
   { path: 'create-account',  component: CreateAccountComponent },
   { path: 'add-car',  component: AddCarComponent },
+  { path: 'edit-car/:id', component: AddCarComponent },
 ];
  
+
 // @NgModule({
 //   imports: [ RouterModule.forRoot(routes) ],
 //   exports: [ RouterModule ]

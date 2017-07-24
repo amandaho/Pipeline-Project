@@ -27,6 +27,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminComponent } from './admin/admin.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { AddCarComponent } from './add-car/add-car.component';
+import { DeleteConfirmComponent } from './delete-confirm/delete-confirm.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { AddCarComponent } from './add-car/add-car.component';
     AdminComponent,
     CreateAccountComponent,
     AddCarComponent,
+    DeleteConfirmComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +58,7 @@ import { AddCarComponent } from './add-car/add-car.component';
       apiKey: 'AIzaSyCK35x5jSnSEfukM5AtISDXjyODWbSaLcg'
     })
   ],
+  entryComponents: [DeleteConfirmComponent],
   providers: [HiveService],
   bootstrap: [ AppComponent ]
 })

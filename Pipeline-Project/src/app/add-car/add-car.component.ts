@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild }      from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Location }               from '@angular/common';
 import { NgForm } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 
 import { HiveService } from '../hive.service'
 
@@ -14,6 +15,9 @@ import { HiveService } from '../hive.service'
 
 export class AddCarComponent implements OnInit {
 
+  addCar: NgForm;
+  @ViewChild('addCar') currentForm: NgForm;
+
   successMessage: string;
   errorMessage: string;
   driver = {
@@ -24,29 +28,43 @@ export class AddCarComponent implements OnInit {
     // vehicle_year: <number> null,
   };
 
-  
+  firstFormControl = new FormControl('', [
+    Validators.minLength(2)
+  ]);
 
-  addCar: NgForm;
-  @ViewChild('addCar') currentForm: NgForm;
-
+  lastFormControl = new FormControl('', [
+    Validators.minLength(2)
+  ]);
 
   constructor(
     private hiveService: HiveService, 
     private router: Router, 
     private route: ActivatedRoute
-    ) {}
+  ) { }
+
+  getRecordForEdit() {
+    this.route.params
+      .switchMap((params: Params) => this.hiveService.getRecord("driverinfo", +params['id']))
+      .subscribe(driver => this.driver = driver);
+  }
 
   ngOnInit() {
-    
+    this.route.params
+      .subscribe((params: Params) => {
+        (+params['id']) ? this.getRecordForEdit() : null;
+      });
+
   }
 
   saveDriver(id){
     if(typeof id === "number"){
-      this.hiveService.editRecord("addDriver", this.driver, id)
+      console.log("got to edit driver")
+      this.hiveService.editRecord("driver", this.driver, id)
           .subscribe(
             driver => this.successMessage = "Record updated succesfully",
             error =>  this.errorMessage = <any>error);
     }else {
+      console.log("got to edit driver")
       this.hiveService.addRecord("addDriver", this.driver)
           .subscribe(
             driver => this.successMessage = "Record added succesfully",
@@ -55,7 +73,9 @@ export class AddCarComponent implements OnInit {
     }
           this.driver = {};
           // this.router.navigate(['/admin'])
-  }        
+  }
 
 
 }
+
+
