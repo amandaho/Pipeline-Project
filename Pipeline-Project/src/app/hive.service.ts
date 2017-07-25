@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 export class HiveService {
 
 //   private baseUrl: string = 'https://ancient-chamber-80519.herokuapp.com/api/testdata';
-  private baseUrl: string = 'https://ancient-chamber-80519.herokuapp.com/api/';
+  private baseUrl: string = 'https://cors-anywhere.herokuapp.com/https://ancient-chamber-80519.herokuapp.com/api/';
 
   constructor(private http: Http) { }
 
@@ -33,7 +33,7 @@ export class HiveService {
     return this.http.get(apiUrl)
           .map(this.extractData)
           .catch(this.handleError)
-  }
+    }
 
    getRecord(endpoint: string, id): Observable<object> {
     let apiUrl = `${this.baseUrl}${endpoint}/${id}`;
@@ -42,7 +42,7 @@ export class HiveService {
             .catch(this.handleError);
     }
         
-  addRecord(endpoint: string, record:object): Observable<object> {
+    addRecord(endpoint: string, record:object): Observable<object> {
         let apiUrl = `${this.baseUrl}${endpoint}`;
         console.log(apiUrl)
         console.log(record)
@@ -50,11 +50,19 @@ export class HiveService {
             .map(this.extractData)
             .catch(this.handleError);
     }
+        
+    deleteRecord(endpoint: string, id:number): Observable<object> {
+        let apiUrl = `${this.baseUrl}${endpoint}/${id}`;
+        return this.http.delete(apiUrl)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
 
     editRecord(endpoint: string, record:object, id:number): Observable<object> {
         let apiUrl = `${this.baseUrl}${endpoint}/${id}`;
+        console.log("apiUrl")
         console.log(record)
-        record = this.clean_request_body(record);
+        // record = this.clean_request_body(record);
         console.log(apiUrl)
         return this.http.put(apiUrl, record)
             .map(this.extractData)
