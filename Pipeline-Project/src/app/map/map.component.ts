@@ -61,6 +61,12 @@ export class MapComponent implements OnInit {
 
   clickedMarker(marker:marker){
     console.log('Clicked Marker: '+marker.id)
+    this.HiveService.getRecord("driverinfo", marker.id)
+    .subscribe(
+          markers => {
+            this.markers = markers
+      });
+
   }
 
   //Zoom Level
