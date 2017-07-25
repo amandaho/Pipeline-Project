@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HiveService } from '../hive.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private HiveService: HiveService){}
 
   ngOnInit() {
+    this.HiveService.checkCredentials()
   }
 
   type = 'line';

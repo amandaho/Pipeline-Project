@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Injectable()
 export class HiveService {
@@ -11,7 +12,11 @@ export class HiveService {
 //   private baseUrl: string = 'https://ancient-chamber-80519.herokuapp.com/api/testdata';
   private baseUrl: string = 'https://cors-anywhere.herokuapp.com/https://ancient-chamber-80519.herokuapp.com/api/';
 
-  constructor(private http: Http) { }
+    constructor(
+        private http: Http,
+        private route: ActivatedRoute,
+        private router: Router
+    ) { }
 
   // getRecords(): Observable<any[]> {
   //     return Observable
@@ -28,16 +33,16 @@ export class HiveService {
 //         return this.http.get(apiUrl)
 //   }
 
-  getRecords(endpoint:string): Observable<any[]> {
-    let apiUrl = `${this.baseUrl}${endpoint}`    
-    return this.http.get(apiUrl)
+    getRecords(endpoint:string): Observable<any[]> {
+        let apiUrl = `${this.baseUrl}${endpoint}`    
+        return this.http.get(apiUrl)
           .map(this.extractData)
           .catch(this.handleError)
     }
 
-   getRecord(endpoint: string, id): Observable<object> {
-    let apiUrl = `${this.baseUrl}${endpoint}/${id}`;
-    return this.http.get(apiUrl)
+    getRecord(endpoint: string, id): Observable<object> {
+        let apiUrl = `${this.baseUrl}${endpoint}/${id}`;
+        return this.http.get(apiUrl)
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -85,13 +90,13 @@ export class HiveService {
         return results || [];
     }
 
-  private handleError(error: Response | any) {
+    private handleError(error: Response | any) {
         // In a real world app, you might use a remote logging infrastructure
         let errMsg: string;
         if (error instanceof Response) {
             if(error.status === 0){
                 errMsg = "Error connecting to API"
-            }else{
+            } else{
                 const errorJSON = error.json();
                 errMsg = `${errorJSON.code} - ${errorJSON.message}`;
             } 
@@ -99,7 +104,7 @@ export class HiveService {
         return Observable.throw(errMsg);
     }
 
-  addUser(endpoint: string, record:object): Observable<object> {
+    addUser(endpoint: string, record:object): Observable<object> {
         let apiUrl = `${this.baseUrl}${endpoint}`;
         return this.http.post(apiUrl, record)
             .map(this.extractData)
@@ -109,14 +114,6 @@ export class HiveService {
     login(endpoint: string, record:object) {
         let apiUrl = `${this.baseUrl}${endpoint}`;
         return this.http.post(apiUrl, record)
-            // .map((response: Response) => {
-            //     // login successful if there's a jwt token in the response
-            //     let user = this.extractData;
-                // let user = response.json();
-                // if (user && user.token) {
-                //     // store user details and jwt token in local storage to keep user logged in between page refreshes
-                //     localStorage.setItem('currentUser', JSON.stringify(user));
-                // })
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -124,6 +121,12 @@ export class HiveService {
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
+        this.router.navigate(["/login"]);
     }
 
+    checkCredentials(){
+        if (localStorage.getItem("currentUser") === null){
+            this.router.navigate(['/login']);
+        }
+     }
 }

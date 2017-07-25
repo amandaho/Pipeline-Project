@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MdDialog} from '@angular/material';
+import { HiveService } from '../hive.service';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +9,15 @@ import {MdDialog} from '@angular/material';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public dialog: MdDialog) { }
+  user: object = JSON.parse(localStorage.getItem("currentUser"));
+
+  constructor(
+    public dialog: MdDialog,
+    private HiveService: HiveService
+  ) { }
 
   ngOnInit() {
+     this.HiveService.checkCredentials()
   }
 
   openDialog2() {

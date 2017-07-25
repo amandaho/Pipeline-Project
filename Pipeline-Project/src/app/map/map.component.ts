@@ -22,6 +22,7 @@ export class MapComponent implements OnInit {
   constructor(private HiveService: HiveService){}
 
   ngOnInit() {
+    this.HiveService.checkCredentials();
     this.getLocation();
       setInterval(() => {
         this.getLocation();

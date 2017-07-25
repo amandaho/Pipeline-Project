@@ -6,7 +6,7 @@
 <md-sidenav-container class="demo-sidenav-container tall">
   <md-sidenav #start mode="side">
     <md-nav-list>
-      <button md-menu-item routerLink="home" (click)='start.close()'>
+      <button md-menu-item routerLink="home" (click)='start.close()' *ngIf="user">
         <md-icon>home</md-icon>
         <span>Home</span>
       </button> 
@@ -16,19 +16,19 @@
       <a md-list-item routerLink="map" (click)='start.close()' > 
         <md-icon md-list-icon>map</md-icon> 
         <span md-line>Map</span> </a>-->
-      <button md-menu-item routerLink="login" (click)='start.close()'>
+      <!-- <button md-menu-item routerLink="login" (click)='start.close()'>
         <md-icon>account_circle</md-icon>
         <span>Login</span>
-      </button>    
-      <button md-menu-item routerLink="map" (click)='start.close()'>
+      </button>     -->
+      <button md-menu-item routerLink="map" (click)='start.close()' *ngIf="user">
         <md-icon>map</md-icon>
         <span>Map</span>
       </button>
-      <button md-menu-item routerLink="dashboard" (click)='start.close()'>
+      <button md-menu-item routerLink="dashboard" (click)='start.close()' *ngIf="user">
         <md-icon>insert_chart</md-icon>
         <span>Dashboard</span>
       </button>
-      <button md-menu-item routerLink="admin" (click)='start.close()'>
+      <button md-menu-item routerLink="admin" (click)='start.close()' *ngIf="user">
         <md-icon>settings</md-icon>
         <span>Admin</span>
       </button>     

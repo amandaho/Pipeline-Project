@@ -28,6 +28,7 @@ export class AdminComponent implements OnInit {
   constructor(private HiveService: HiveService, public dialog: MdDialog){}
 
   ngOnInit() {
+    this.HiveService.checkCredentials();
     this.getLocation("driverinfo");
   }
 
