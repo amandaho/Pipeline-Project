@@ -18,18 +18,18 @@
   margin-right: auto;
 }
 
- @media (max-width: 768px) {
+@media (max-width: 768px) {
 
-   .hideMe {
-     display: none;
-   }
+  .hideMe {
+    display: none;
+  }
 
-   .example-fill-remaining-space {
-     flex: 1 1 auto;
-   }
+  .example-fill-remaining-space {
+    flex: 1 1 auto;
+  }
 
-   .centerMe {
-      margin: auto;
-    }
+  .centerMe {
+    margin: auto;
+  }
 
- }
+}

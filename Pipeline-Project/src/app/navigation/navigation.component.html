@@ -12,6 +12,10 @@
     <small>Welcome, {{user.email}}!</small>
   </span>
 
+  <span *ngIf="!user" class="centerMe hideMe"> 
+    <!-- <small>Ple!</small> -->
+  </span>
+
   <span class="example-fill-remaining-space" ></span>
   <!-- <span><a href="/#" [mdMenuTriggerFor]="menu">Contact Us</a></span> -->
 
