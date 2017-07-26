@@ -13,7 +13,9 @@
       [disableDefaultUI]=false
       [zoomControl]=true
       [fullscreenControl]=true
-      [mapTypeControl]=true>
+      [mapTypeControl]=true
+      [scrollwheel]=false
+      >
 
       <agm-marker
         *ngFor="let m of markers"
@@ -26,19 +28,9 @@
         <strong>{{m.vid}}</strong>
         <hr>Latitude: {{m.lati}} <br /> Longitude: {{m.longi}}
         <br /> Vehicle Status: {{m.status}}
-        <br /> Driver First Name: {{retreiveDrivers.driver_first_name}} 
+        {{m.driver_first_name}}
       </agm-info-window>
       
       </agm-marker>
     </agm-map>
   </div>
-
-  <!-- markerMouseOver(m: SebmGoogleMapMarker, $event){
-     let markerIndex = this.markers.indexOf(m); 
-     this.markers[markerIndex].infoWindow.isOpen = true; 
-     for (let i of this.markers) { 
-       if(m != i){ 
-         i.infoWindow.isOpen = false; 
-        } 
-      } 
-    } -->

@@ -29,6 +29,8 @@ export class LoginComponent implements OnInit {
   ){};
 
   ngOnInit() {
+    // localStorage.removeItem('currentUser');
+    //this.HiveService.logout();
   }
 
   emailFormControl = new FormControl('', [
@@ -45,22 +47,19 @@ export class LoginComponent implements OnInit {
     this.successMessage = "";
 
     this.HiveService.login("validateUser", this.user)
-        .subscribe(
-            (data) => {
-              this.returnUser = data;
-              if (this.returnUser.length == 0){
-                  this.errorMessage = "Incorrect Email Address or Password. Please try again, or sign up for a new account!";
-              } else {
-                  // this.successMessage = "Logged in successfully!"
-                  this.router.navigate(["/home"]);
-              }
-              console.log(this.returnUser)
-
-              // this.router.navigate([this.returnUrl]);
-              // this.successMessage = "Logged in succesfully";
-            },
-            error =>  this.errorMessage = <any>error
-            );
+      .subscribe(
+          (data) => {
+            this.returnUser = data;
+            if (this.returnUser.length == 0){
+                this.errorMessage = "Incorrect Email Address or Password. Please try again, or sign up for a new account!";
+            } else {
+              localStorage.setItem('currentUser', JSON.stringify(this.returnUser))
+              this.router.navigate(["/home"]);
+            }
+            console.log(this.returnUser)
+          },
+          error =>  this.errorMessage = <any>error
+          );
     }
 
 }

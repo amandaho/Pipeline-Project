@@ -4,28 +4,46 @@
   <span>The Hive</span>
 
   <!-- <button md-icon-button (click)="start.toggle()"> -->
-  <button md-icon-button (click)="navOpen()">
+  <button md-icon-button (click)="navOpen()" *ngIf="user">
     <md-icon>dehaze</md-icon>
   </button>
 
-  <span class="spacer"></span>
-  Contact Us
-  <button md-icon-button [mdMenuTriggerFor]="menu">
-    <md-icon>live_help</md-icon>
+  <span *ngIf="user" class="centerMe hideMe"> 
+    <small>Welcome, {{user.email}}!</small>
+  </span>
+
+  <span class="example-fill-remaining-space" ></span>
+  <!-- <span><a href="/#" [mdMenuTriggerFor]="menu">Contact Us</a></span> -->
+
+  <button md-button routerLink="login" *ngIf="!user">
+    <span>Login</span>
+    <md-icon>account_box</md-icon> 
   </button>
 
-  <md-menu #menu="mdMenu"> 
-      <button md-menu-item disabled>
-        <md-icon>comment</md-icon>
-        <span>Live Chat</span>
-      </button>
-      <button md-menu-item disabled>
-        <md-icon>contact_phone</md-icon>
-        <span>Phone</span>
-      </button>
-      <button md-menu-item>
-        <md-icon>contact_mail</md-icon>
-        <span>Email</span>
-      </button>
-    </md-menu>
+  <button md-button routerLink="login" (click)="logout()" *ngIf="user">
+    <span>Logout</span>
+    <md-icon>exit_to_app</md-icon> 
+  </button>
+
+   <button md-icon-button [mdMenuTriggerFor]="menu"> 
+     <md-icon>live_help</md-icon> 
+   </button> 
+
+   <md-menu #menu="mdMenu"> 
+    <button md-menu-item disabled>
+      <md-icon>comment</md-icon>
+      <span>Live Chat</span>
+    </button>
+    <button md-menu-item disabled>
+      <md-icon>contact_phone</md-icon>
+      <span>Phone</span>
+    </button>
+    <button md-menu-item>
+      <md-icon>contact_mail</md-icon>
+      <span>Email</span>
+    </button>
+  </md-menu> 
+  <!-- <button md-fab> Login 
+  </button> -->
+
 </md-toolbar>

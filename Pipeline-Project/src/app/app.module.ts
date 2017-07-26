@@ -28,7 +28,7 @@ import { AdminComponent } from './admin/admin.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { AddCarComponent } from './add-car/add-car.component';
 import { DeleteConfirmComponent } from './delete-confirm/delete-confirm.component';
-import _ from 'lodash'; 
+import { AuthGuard } from './auth-guard';
 
 
 @NgModule({
@@ -60,7 +60,8 @@ import _ from 'lodash';
     })
   ],
   entryComponents: [DeleteConfirmComponent],
-  providers: [HiveService],
-  bootstrap: [ AppComponent ]
+  providers: [HiveService, AuthGuard],
+  bootstrap: [ AppComponent ],
+  
 })
 export class AppModule {}

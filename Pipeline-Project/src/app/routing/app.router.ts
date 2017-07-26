@@ -10,9 +10,10 @@ import { LoginComponent }   from '../login/login.component';
 import { DashboardComponent }   from '../dashboard/dashboard.component';
 import { CreateAccountComponent }   from '../create-account/create-account.component';
 import { AddCarComponent }   from '../add-car/add-car.component';
+import { AuthGuard } from '../auth-guard';
 
 const router: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'home',  component: HomeComponent },
   { path: 'map',  component: MapComponent },
   { path: 'admin',  component: AdminComponent },
@@ -21,13 +22,9 @@ const router: Routes = [
   { path: 'create-account',  component: CreateAccountComponent },
   { path: 'add-car',  component: AddCarComponent },
   { path: 'edit-car/:id', component: AddCarComponent },
+
+  // otherwise redirect to home
+  { path: '**', redirectTo: '' }
 ];
- 
 
-// @NgModule({
-//   imports: [ RouterModule.forRoot(routes) ],
-//   exports: [ RouterModule ]
-// })
-// export class AppRoutingModule {}
-
-export const routes: ModuleWithProviders = RouterModule.forRoot(router)
+export const routes = RouterModule.forRoot(router)
