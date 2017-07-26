@@ -13,7 +13,9 @@
       [disableDefaultUI]=false
       [zoomControl]=true
       [fullscreenControl]=true
-      [mapTypeControl]=true>
+      [mapTypeControl]=true
+      [scrollwheel]=false
+      >
 
       <agm-marker
         *ngFor="let m of markers;let i = index"
@@ -23,9 +25,10 @@
         [iconUrl]="(m.status == '1') ? 'http://maps.google.com/mapfiles/kml/pal4/icon15.png' : 'http://maps.google.com/mapfiles/kml/pal4/icon62.png'">
       
       <agm-info-window>
-        <strong>{{m.id}}</strong>
+        <strong>{{m.vid}}</strong>
         <hr>Latitude: {{m.lati}} <br /> Longitude: {{m.longi}}
         <br /> Vehicle Status: {{m.status}}
+        {{m.driver_first_name}}
       </agm-info-window>
       
       </agm-marker>

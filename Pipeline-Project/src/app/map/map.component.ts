@@ -4,6 +4,7 @@ import { OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AgmCoreModule } from '@agm/core';
 import { CommonModule } from '@angular/common';
 import { HiveService } from '../hive.service';
+import _ from 'lodash'
 
 @Component({
   selector: 'app-map',
@@ -37,7 +38,19 @@ export class MapComponent implements OnInit {
     this.HiveService.getRecords("updatelocations")
       .subscribe(
           markers => {
-            this.markers = markers     
+            this.markers = markers
+            for(let i = 0; i < this.markers.length; i++ ){
+              this.HiveService.getRecord("driverinfo", this.markers[i].vid)
+                .subscribe(
+                  driverInfo => {
+                      this.markers[i] =  _.merge({}, this.markers[i], driverInfo);
+                      // console.log(this.markers[i]);
+                  },
+                  error => {
+                    // console.log("shit bad happend")
+                  }
+                )
+            }  
       },
         error =>  {
           this.errorMessage = <any>error; 
@@ -61,7 +74,7 @@ export class MapComponent implements OnInit {
   }
 
   clickedMarker(marker:marker){
-    console.log('Clicked Marker: '+marker.id)
+    console.log('Clicked Marker: '+marker.vid)
   }
 
   //Zoom Level
@@ -73,7 +86,7 @@ export class MapComponent implements OnInit {
 }
 
 interface marker {
-  id?: string;
+  vid?: string;
   lat: number;
   lng: number;
   status: string;
