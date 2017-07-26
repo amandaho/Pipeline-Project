@@ -4,6 +4,7 @@ import { OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AgmCoreModule } from '@agm/core';
 import { CommonModule } from '@angular/common';
 import { HiveService } from '../hive.service';
+import _ from 'lodash'; 
 
 @Component({
   selector: 'app-map',
@@ -19,16 +20,28 @@ export class MapComponent implements OnInit {
   mapTimer = 30;
   buttonEnabled: boolean;
 
+  retreiveDrivers: any;
+
   constructor(private HiveService: HiveService){}
 
   ngOnInit() {
     this.getLocation();
+    // this.getDriver();
+
+    setInterval(() => {
+        console.log("returned merged")
+        this.getMerged();
+      }, 10000);
+
       setInterval(() => {
         this.getLocation();
+        // this.getDriver();
       }, 30000);
       setInterval(() => {
       this.autoRefresh();
     }, 1000);
+
+    
 
   }
 
@@ -36,7 +49,8 @@ export class MapComponent implements OnInit {
     this.HiveService.getRecords("updatelocations")
       .subscribe(
           markers => {
-            this.markers = markers     
+            this.markers = markers;
+            console.log(this.markers);    
       },
         error =>  {
           this.errorMessage = <any>error; 
@@ -59,15 +73,52 @@ export class MapComponent implements OnInit {
     }
   }
 
+  // private _lastOpenIndex: number = -1;
+  // @ViewChild('agmMarker'): AgmCoreModule;
+
   clickedMarker(marker:marker){
-    console.log('Clicked Marker: '+marker.id)
-    this.HiveService.getRecord("driverinfo", marker.id)
-    .subscribe(
-          markers => {
-            this.markers = markers
+    console.log('Clicked Marker: '+marker.vid)
+
+    // data['isOpen'] = true;
+    // if (this._lastOpenIndex > -1) this.agmMarker[this._lastOpenIndex]['isOpen'] = false;
+    // this._lastOpenIndex = index;
+
+    this.HiveService.getRecord("driverinfo", marker.vid)
+      .subscribe(
+        retreiveDrivers => {
+          this.retreiveDrivers = retreiveDrivers;
+          console.log(this.retreiveDrivers);
+      },
+        error =>  {
+          this.errorMessage = <any>error;
       });
 
   }
+  
+  // getDriver(){
+  //   this.HiveService.getRecords("driverinfo")
+  //     .subscribe(
+  //       retreiveDrivers => {
+  //         this.retreiveDrivers = retreiveDrivers;
+  //         console.log(this.retreiveDrivers);
+          
+  //     },
+  //       error =>  {
+  //         this.errorMessage = <any>error;
+  //     });
+  // }
+
+  getMerged(){
+    // let merged = _.map(this.retreiveDrivers, function(item){
+    //   return _.extend(item, _.findWhere(this.markers,{id: item.vid}))
+      
+      // let merged = Object.assign({}, this.markers, this.retreiveDrivers)
+
+     let merged = {};
+     for(var id in this.markers) merged[id] = this.markers[id];
+     for(var vid in this.retreiveDrivers) merged[vid] = this.retreiveDrivers[id];
+  
+}
 
   //Zoom Level
   zoom: number = 11;
@@ -78,8 +129,17 @@ export class MapComponent implements OnInit {
 }
 
 interface marker {
-  id?: string;
+  vid?: number;
   lat: number;
   lng: number;
   status: string;
+}
+
+interface retreiveDriver {
+  vid?: number;
+  driver_first_name: string; 
+  driver_last_name: string;
+  vehicle_make: string;
+  vehicle_model: string;
+  vehicle_year: number;
 }

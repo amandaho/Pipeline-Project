@@ -28,6 +28,7 @@ import { AdminComponent } from './admin/admin.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { AddCarComponent } from './add-car/add-car.component';
 import { DeleteConfirmComponent } from './delete-confirm/delete-confirm.component';
+import _ from 'lodash'; 
 
 
 @NgModule({

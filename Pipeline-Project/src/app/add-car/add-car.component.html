@@ -40,7 +40,7 @@
               <input [(ngModel)]="driver.vehicle_model" mdInput placeholder="Vehicle Model" id="vehicle_model" name="vehicle_model">
               <md-icon mdSuffix>mode_edit</md-icon>
             </md-input-container>
-            <button md-raised-button type="submit" class="submitForm" novalidate>Submit</button>
+            <button md-raised-button type="submit" [disabled]= "lastFormControl.hasError('minlength') || firstFormControl.hasError('minlength')" class="submitForm">Submit</button>
           </form>
         </md-card-content>
       </md-card>
