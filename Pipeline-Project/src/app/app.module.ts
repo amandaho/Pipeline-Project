@@ -14,7 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'hammerjs';
 // import { AppRoutingModule } from './routing/routing.module';
 import { routes } from './routing/app.router';
-import { ChartModule } from 'angular2-chartjs';
+import { ChartsModule } from 'ng2-charts';
 
 import { AgmCoreModule } from '@agm/core';
 import { HiveService } from './hive.service';
@@ -54,7 +54,7 @@ import { AuthGuard } from './auth-guard';
     BrowserAnimationsModule,
     HttpModule,
     routes,
-    ChartModule,
+    ChartsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCK35x5jSnSEfukM5AtISDXjyODWbSaLcg'
     })

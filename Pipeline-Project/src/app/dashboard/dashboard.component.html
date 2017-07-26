@@ -47,26 +47,37 @@
     </md-option>
   </md-autocomplete>  -->
 
-  <md-select class="pull-right" placeholder="Driver Name" [(ngModel)]="selectedDriver" name="driverName" (change)="driverSelect(selectedDriver)">
+  <md-select class="pull-right dropDown" placeholder="Driver Name" [(ngModel)]="selectedDriver" name="driverName" (change)="driverSelect(selectedDriver)">
     <md-option>None</md-option>
-    <md-option *ngFor="let d of drivers" [value]="d.vid">
+    <md-option class='testText' *ngFor="let d of drivers" [value]="d.vid">
       {{ d.driver_last_name + ', ' + d.driver_first_name }}
     </md-option>
   </md-select>
   
 </div>
 
-
 <div class="row">
 
   <div class="col-xs-12 col-sm-12 col-md-12">
     <md-card class="example-card">
       <md-card-header>
-        <md-card-title>Full Year</md-card-title>
+        <md-card-title class="testText">
+          <strong>Status Total by Day of Week</strong>
+        </md-card-title>
       </md-card-header>
       <hr>
       <md-card-content>
-        <chart [type]="type" [data]="data" [options]="options"></chart>
+
+        <canvas baseChart height="75"
+          [datasets]="lineChartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [legend]="lineChartLegend"
+          [chartType]="lineChartType"
+        >
+        </canvas>      
+
       </md-card-content>
     </md-card>
   </div>

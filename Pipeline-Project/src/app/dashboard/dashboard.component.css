@@ -23,5 +23,13 @@
 }
 
 .testText {
-  font-size: 12px;
+  font-size: 14px;
+}
+
+.testText strong{
+  font-size: 30px;
+}
+
+.dropDown {
+  width: 200px;
 }
