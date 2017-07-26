@@ -10,7 +10,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class HiveService {
 
 //   private baseUrl: string = 'https://ancient-chamber-80519.herokuapp.com/api/testdata';
-  private baseUrl: string = 'https://cors-anywhere.herokuapp.com/https://ancient-chamber-80519.herokuapp.com/api/';
+  private baseUrl: string = 'https://ancient-chamber-80519.herokuapp.com/api/';
+    // private baseUrl: string = 'https://cors-anywhere.herokuapp.com/https://ancient-chamber-80519.herokuapp.com/api/';
 
     constructor(
         private http: Http,
