@@ -27,7 +27,7 @@
 </div>  -->
 
 <div class="container">
-  <md-input-container class="pull-right">
+  <!-- <md-input-container class="pull-right">
     <input mdInput placeholder="Driver Name" [mdAutocomplete]="dInfo">
   </md-input-container>
 
@@ -45,7 +45,15 @@
     <md-option class="testText" *ngFor="let dow of weekday" value="{{ dow }}">
       {{ dow }}
     </md-option>
-  </md-autocomplete> 
+  </md-autocomplete>  -->
+
+  <md-select class="pull-right" placeholder="Driver Name" [(ngModel)]="selectedDriver" name="driverName" (change)="driverSelect(selectedDriver)">
+    <md-option>None</md-option>
+    <md-option *ngFor="let d of drivers" [value]="d.vid">
+      {{ d.driver_last_name + ', ' + d.driver_first_name }}
+    </md-option>
+  </md-select>
+  
 </div>
 
 

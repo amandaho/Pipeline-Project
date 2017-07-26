@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HiveService } from '../hive.service';
+import _ from 'lodash'
 
 
 @Component({
@@ -35,11 +36,25 @@ export class DashboardComponent implements OnInit {
     this.HiveService.getRecord(endpoint, id)
       .subscribe(
           driverData => {
-            this.driverData = driverData;    
-            console.log(this.drivers); 
+            this.driverData = driverData;
+            let data:Array<any> = new Array();
+            let labels : Array<any> = new Array();
+            for (var i = 0; i < this.driverData.length; i++) {
+              data =  _.concat(data, this.driverData[i].status_total);
+              labels =  _.concat(labels, this.driverData[i].dow);
+            } 
+            console.log('driverData object:')        
+            console.log(this.driverData); 
+            console.log('data object:')    
+            console.log(data); 
+            console.log('labels object:')        
+            console.log(labels); 
       })
   }
 
+  driverSelect(id){
+    this.getDriverData("sumbydow", id);
+  }
 
   type = 'line';
   data = {
