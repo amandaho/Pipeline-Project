@@ -20,13 +20,17 @@ export class MapComponent implements OnInit {
   mapTimer = 30;
   buttonEnabled: boolean;
 
+  retreiveDrivers: any;
+
   constructor(private HiveService: HiveService){}
 
   ngOnInit() {
-    this.HiveService.checkCredentials();
+    this.HiveService.checkCredentials();  
     this.getLocation();
+    // this.getDriver();
       setInterval(() => {
         this.getLocation();
+        // this.getDriver();
       }, 30000);
       setInterval(() => {
       this.autoRefresh();
@@ -73,10 +77,11 @@ export class MapComponent implements OnInit {
     }
   }
 
+
   clickedMarker(marker:marker){
     console.log('Clicked Marker: '+marker.vid)
   }
-
+  
   //Zoom Level
   zoom: number = 11;
   //Start Position
@@ -90,4 +95,13 @@ interface marker {
   lat: number;
   lng: number;
   status: string;
+}
+
+interface retreiveDriver {
+  vid?: number;
+  driver_first_name: string; 
+  driver_last_name: string;
+  vehicle_make: string;
+  vehicle_model: string;
+  vehicle_year: number;
 }

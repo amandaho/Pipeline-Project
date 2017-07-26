@@ -18,8 +18,8 @@
       >
 
       <agm-marker
-        *ngFor="let m of markers;let i = index"
-        (markerClick)="clickedMarker(m,i)"  
+        *ngFor="let m of markers"
+        (markerClick)="clickedMarker(m)"   
         [latitude]="m.lati" 
         [longitude]="m.longi"
         [iconUrl]="(m.status == '1') ? 'http://maps.google.com/mapfiles/kml/pal4/icon15.png' : 'http://maps.google.com/mapfiles/kml/pal4/icon62.png'">
