@@ -28,18 +28,28 @@
                 Please enter a last name that is at least 2 letters.
               </md-error> 
             </md-input-container>
-            <md-input-container class="inputForm">
-              <input [(ngModel)]="driver.vehicle_year" mdInput placeholder="Vehicle Year" id="vehicle_year" name="vehicle_year">
-              <md-icon mdSuffix>mode_edit</md-icon>
-            </md-input-container>
-            <md-input-container class="inputForm">
-              <input [(ngModel)]="driver.vehicle_make" mdInput placeholder="Vehicle Make" id="vehicle_make" name="vehicle_make">
-              <md-icon mdSuffix>mode_edit</md-icon>
-            </md-input-container>
-            <md-input-container class="inputForm">
-              <input [(ngModel)]="driver.vehicle_model" mdInput placeholder="Vehicle Model" id="vehicle_model" name="vehicle_model">
-              <md-icon mdSuffix>mode_edit</md-icon>
-            </md-input-container>
+
+            <md-select placeholder="Vehicle Make" [(ngModel)]="year" name="vehicleYear" (change)="getMakes()">
+              <md-option *ngFor="let y of yearArray" [value]="y">
+                {{ y }}
+              </md-option>
+            </md-select>
+            <br />
+            
+            <md-select placeholder="Vehicle Make" [(ngModel)]="make" name="vehicleMake" (change)="getModels()">
+              <md-option *ngFor="let m of makes" [value]="m.make_id">
+                  {{ m.make_display }}
+              </md-option>
+            </md-select>
+            <br />
+        
+            <md-select placeholder="Vehicle Model" [(ngModel)]="model" name="vehicleModel">
+              <md-option *ngFor="let v of models" [value]="v.model_make_id">
+                  {{ v.model_name }}
+              </md-option>
+            </md-select>
+            <br />
+           
             <button md-raised-button type="submit" [disabled]= "lastFormControl.hasError('minlength') || firstFormControl.hasError('minlength')" class="submitForm">Submit</button>
           </form>
         </md-card-content>

@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { RouterModule }   from '@angular/router';
 import { MdCardModule } from '@angular/material';
 
+
 import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'hammerjs';
@@ -18,7 +19,8 @@ import { ChartModule } from 'angular2-chartjs';
 
 import { AgmCoreModule } from '@agm/core';
 import { HiveService } from './hive.service';
-import { HttpModule } from '@angular/http';
+import { CarService } from './car.service';
+import { HttpModule, JsonpModule } from '@angular/http';
 import { NavigationComponent } from './navigation/navigation.component';
 import { MapComponent } from './map/map.component';
 import { StatusMessageComponent } from './status-message/status-message.component';
@@ -53,6 +55,7 @@ import { AuthGuard } from './auth-guard';
     MaterialModule,
     BrowserAnimationsModule,
     HttpModule,
+    JsonpModule,
     routes,
     ChartModule,
     AgmCoreModule.forRoot({
@@ -60,7 +63,7 @@ import { AuthGuard } from './auth-guard';
     })
   ],
   entryComponents: [DeleteConfirmComponent],
-  providers: [HiveService, AuthGuard],
+  providers: [HiveService, CarService, AuthGuard],
   bootstrap: [ AppComponent ],
   
 })

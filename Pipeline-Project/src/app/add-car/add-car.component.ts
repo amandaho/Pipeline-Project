@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { FormControl, Validators } from '@angular/forms';
 
 import { HiveService } from '../hive.service'
+import { CarService } from '../car.service'
 
 @Component({
   selector: 'app-add-car',
@@ -20,13 +21,16 @@ export class AddCarComponent implements OnInit {
 
   successMessage: string;
   errorMessage: string;
-  driver = {
-    // driver_first_name: <string> null,
-    // driver_last_name: <string> null,
-    // vehicle_make: <string> null,
-    // vehicle_model: <string> null,
-    // vehicle_year: <number> null,
-  };
+  driver = {};
+  years: any;
+  makes: any;
+  models: any;
+  yearArray = [];
+  makesArray = [];
+  modelsArray = [];
+  year: any;
+  make: any;
+  model: any;
 
   firstFormControl = new FormControl('', [
     Validators.minLength(2)
@@ -38,6 +42,7 @@ export class AddCarComponent implements OnInit {
 
   constructor(
     private hiveService: HiveService, 
+    private carService: CarService, 
     private router: Router, 
     private route: ActivatedRoute
   ) { }
@@ -53,10 +58,10 @@ export class AddCarComponent implements OnInit {
       .subscribe((params: Params) => {
         (+params['id']) ? this.getRecordForEdit() : null;
       });
-
+    this.getYears();
   }
 
-  saveDriver(id){
+  saveDriver(id) {
     if(typeof id === "number"){
       console.log("got to edit driver")
       this.hiveService.editRecord("driver", this.driver, id)
@@ -64,7 +69,7 @@ export class AddCarComponent implements OnInit {
             driver => this.successMessage = "Record updated succesfully",
             error =>  this.errorMessage = <any>error);
     }else {
-      console.log("got to edit driver")
+      console.log("got to add driver")
       this.hiveService.addRecord("addDriver", this.driver)
           .subscribe(
             driver => this.successMessage = "Record added succesfully",
@@ -74,7 +79,46 @@ export class AddCarComponent implements OnInit {
           this.driver = {};
           // this.router.navigate(['/admin'])
   }
+  
+  getYears() {
+    this.carService.getVehicleYears("getYears")
+      .subscribe(
+        years => {
+          this.years = years;
+        // console.log(this.years)
+        this.setYearsArray(parseInt(this.years.Years.min_year),this.years.Years.max_year);
+        // console.log(this.yearArray)                
+    },
+      error =>  this.errorMessage = <any>error);
+  }
 
+  setYearsArray(min, max) {
+    for (let i = min; i <= max; i++){
+      this.yearArray.push(i);
+    }
+  }
+
+  getMakes() {
+    this.carService.getVehicleMakes("getMakes", this.year)
+      .subscribe(
+        makes => {
+          this.makes = makes.Makes;
+        console.log(this.makes)
+    },
+      error =>  this.errorMessage = <any>error);
+  }
+  
+  
+  getModels() {
+    this.carService.getVehicleModels("getModels", this.make, this.year)
+      .subscribe(
+        models => {
+          this.models = models.Models;
+          console.log(this.models)
+       
+    },
+      error =>  this.errorMessage = <any>error);
+  }
 
 }
 
