@@ -98,8 +98,8 @@ export class AddCarComponent implements OnInit {
     }
   }
 
-  getMakes() {
-    this.carService.getVehicleMakes("getMakes", this.year)
+  getMakes(barbie) {
+    this.carService.getVehicleMakes("getMakes", barbie)
       .subscribe(
         makes => {
           this.makes = makes.Makes;
@@ -109,8 +109,8 @@ export class AddCarComponent implements OnInit {
   }
   
   
-  getModels() {
-    this.carService.getVehicleModels("getModels", this.make, this.year)
+  getModels(barbie,ken) {
+    this.carService.getVehicleModels("getModels", barbie, ken)
       .subscribe(
         models => {
           this.models = models.Models;

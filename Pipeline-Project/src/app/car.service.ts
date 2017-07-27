@@ -33,7 +33,7 @@ export class CarService {
           .catch(this.handleError)
     }
 
-  getVehicleModels(endpoint:string, make:string, year:number,): Observable<any> {
+  getVehicleModels(endpoint:string, year:number, make:string): Observable<any> {
         let apiUrl = `${this.baseUrl}&cmd=${endpoint}&make=${make}&year=${year}&sold_in_us=1`
         console.log(apiUrl)    
         return this.jsonp.get(apiUrl)
