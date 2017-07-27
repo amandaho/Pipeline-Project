@@ -29,26 +29,26 @@
               </md-error> 
             </md-input-container>
 
-            <md-select placeholder="Vehicle Year" [(ngModel)]="driver.vehicle_year" name="vehicleYear" (change)="getMakes(driver.vehicle_year)">
+            <md-select class="dropDown" placeholder="Vehicle Year" [(ngModel)]="driver.vehicle_year" name="vehicleYear" (change)="getMakes(driver.vehicle_year)">
               <md-option *ngFor="let y of yearArray" [value]="y">
                 {{ y }}
               </md-option>
             </md-select>
-            <br />
+            <br />&nbsp;
             
-            <md-select placeholder="Vehicle Make" [(ngModel)]="driver.vehicle_make" name="vehicleMake" (change)="getModels(driver.vehicle_year, driver.vehicle_make)">
+            <md-select class="dropDown" placeholder="Vehicle Make" [(ngModel)]="driver.vehicle_make" name="vehicleMake" (change)="getModels(driver.vehicle_year, driver.vehicle_make)">
               <md-option *ngFor="let m of makes" [value]="m.make_display">
                   {{ m.make_display }}
               </md-option>
             </md-select>
-            <br />
+            <br />&nbsp;
         
-            <md-select placeholder="Vehicle Model" [(ngModel)]="driver.vehicle_model" name="vehicleModel">
+            <md-select class="dropDown" placeholder="Vehicle Model" [(ngModel)]="driver.vehicle_model" name="vehicleModel">
               <md-option *ngFor="let v of models" [value]="v.model_name">
                   {{ v.model_name }}
               </md-option>
             </md-select>
-            <br />
+            <br />&nbsp;
            
             <button md-raised-button type="submit" [disabled]= "lastFormControl.hasError('minlength') || firstFormControl.hasError('minlength')" class="submitForm">Submit</button>
           </form>

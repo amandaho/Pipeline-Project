@@ -19,7 +19,7 @@ export class CarService {
 
   getVehicleYears(endpoint:string): Observable<any> {
         let apiUrl = `${this.baseUrl}&cmd=${endpoint}`
-        // console.log(apiUrl)    
+        console.log(apiUrl)    
         return this.jsonp.get(apiUrl)
           .map(this.extractData)
           .catch(this.handleError)
@@ -34,7 +34,7 @@ export class CarService {
     }
 
   getVehicleModels(endpoint:string, year:number, make:string): Observable<any> {
-        let apiUrl = `${this.baseUrl}&cmd=${endpoint}&make=${make}&year=${year}&sold_in_us=1`
+        let apiUrl = `${this.baseUrl}&cmd=${endpoint}&year=${year}&make=${make}&sold_in_us=1`
         console.log(apiUrl)    
         return this.jsonp.get(apiUrl)
           .map(this.extractData)
