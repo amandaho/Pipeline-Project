@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HiveService } from '../hive.service';
+import _ from 'lodash'
 
 
 @Component({
@@ -7,11 +8,14 @@ import { HiveService } from '../hive.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
 export class DashboardComponent implements OnInit {
 
   drivers: any [];
   driverData;
-  weekday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday") 
+  // dataTest: any = [443, 489, 731, 1410, 734, 469, 409];
+  // labelTest: any = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  // weekday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday") 
 
   constructor(private HiveService: HiveService){}
 
@@ -35,35 +39,56 @@ export class DashboardComponent implements OnInit {
     this.HiveService.getRecord(endpoint, id)
       .subscribe(
           driverData => {
-            this.driverData = driverData;    
-            console.log(this.drivers); 
+            this.driverData = driverData;
+            let data:Array<any> = new Array();
+            let labels : Array<any> = new Array();
+            for (var i = 0; i < this.driverData.length; i++) {
+              data =  _.concat(data, this.driverData[i].status_total);
+              labels =  _.concat(labels, this.driverData[i].dow);
+            } 
+            this.lineChartLabels = labels;
+            this.lineChartData[1].data = data;
+            // console.log('driverData object:')        
+            // console.log(this.driverData); 
+            // console.log('data object:')    
+            // console.log(data); 
+            // console.log('labels object:')        
+            // console.log(labels); 
       })
   }
 
+  driverSelect(id){
+    this.getDriverData("sumbydow", id);
+    // console.log(this.data);
+  }
 
-  type = 'line';
-  data = {
-    labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-    datasets: [
-      {
-        label: "My First dataset",
-        data: [65, 59, 80, 81, 56, 55, 63, 22, 88, 45, 89, 99]
-      },
-      {
-        label: "My Second dataset",
-        data: [45, 34, 98, 56, 34, 23, 12, 22, 64, 23, 94, 34]
-      },
-      {
-        label: "My Third dataset",
-        data: [55, 25, 99, 67, 54, 66, 65, 34, 98, 65, 34, 78]
-      },
-      
-    ]
+public lineChartData:Array<any> = [
+    { data: [653, 598, 809, 831, 556, 545, 470], label: 'Driver Average' },
+    { data: [], label: 'Specified Driver' },
+    // {data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C'}
+  ];
+  public lineChartLabels:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartOptions:any = {
+    responsive: true
   };
-  options = {
-    responsive: true,
-    maintainAspectRatio: false
-  };
-
-
+  public lineChartColors:Array<any> = [
+    { // blue
+      backgroundColor: 'rgba(63,81,181,0.2)',
+      borderColor: 'rgba(63,81,181,1)',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    },
+    { // orange
+      backgroundColor: 'rgba(253,161,89,0.3)',
+      borderColor: 'rgba(253,161,89,1)',
+      pointBackgroundColor: 'rgba(77,83,96,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(77,83,96,1)'
+    }
+  ];
+  public lineChartLegend:boolean = true;
+  public lineChartType:string = 'line';
 }
