@@ -13,13 +13,12 @@ export class DashboardComponent implements OnInit {
 
   drivers: any [];
   driverData;
-  // dataTest: any = [443, 489, 731, 1410, 734, 469, 409];
-  // labelTest: any = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-  // weekday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday") 
+  loading = false;
 
   constructor(private HiveService: HiveService){}
 
   ngOnInit() {
+    this.loading = true;
     this.HiveService.checkCredentials();
     this.getDrivers("driverinfo");
     // this.getDrivers("sumbydow", );
@@ -32,6 +31,7 @@ export class DashboardComponent implements OnInit {
           drivers => {
             this.drivers = drivers;    
             // console.log(this.drivers); 
+            this.loading = false;
       })
   }
 
@@ -48,6 +48,7 @@ export class DashboardComponent implements OnInit {
             } 
             this.lineChartLabels = labels;
             this.lineChartData[1].data = data;
+            this.loading = false;
             // console.log('driverData object:')        
             // console.log(this.driverData); 
             // console.log('data object:')    
@@ -58,6 +59,7 @@ export class DashboardComponent implements OnInit {
   }
 
   driverSelect(id){
+    this.loading = true;
     this.getDriverData("sumbydow", id);
     // console.log(this.data);
   }

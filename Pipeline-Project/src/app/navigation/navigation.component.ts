@@ -16,12 +16,21 @@ export class NavigationComponent implements OnInit {
     private HiveService: HiveService,
   ){}
 
+  truthVal = true;
+
   ngOnInit() {
   }
 
   navOpen() {
-    this.navToggle.emit(true);
+    this.navToggle.emit(this.truthVal);
   }
+
+  // navClose() {
+  //   if (this.truthVal == false) {
+  //     this.navToggle.emit(this.truthVal);
+  //   }
+  //   this.truthVal = true;
+  // }
 
   ngAfterContentChecked() {
      this.user = JSON.parse(localStorage.getItem("currentUser"));

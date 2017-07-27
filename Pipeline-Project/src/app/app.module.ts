@@ -7,7 +7,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule }   from '@angular/router';
-import { MdCardModule } from '@angular/material';
+import { MdCardModule, MdDatepickerModule } from '@angular/material';
 
 import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';

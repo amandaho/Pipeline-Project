@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
     email: <string> null,
     password_hash: <string> null,
   };
+  loading = false;
 
   constructor(
     private HiveService: HiveService,
@@ -45,6 +46,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.errorMessage = "";
     this.successMessage = "";
+    this.loading = true;
 
     this.HiveService.login("validateUser", this.user)
       .subscribe(
@@ -58,8 +60,10 @@ export class LoginComponent implements OnInit {
             }
             console.log(this.returnUser)
           },
-          error =>  this.errorMessage = <any>error
-          );
+          error =>  {
+            this.errorMessage = <any>error;
+            this.loading = false;
+          });
     }
 
 }
