@@ -10,8 +10,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class HiveService {
 
 //   private baseUrl: string = 'https://ancient-chamber-80519.herokuapp.com/api/testdata';
-  private baseUrl: string = 'https://ancient-chamber-80519.herokuapp.com/api/';
-    // private baseUrl: string = 'https://cors-anywhere.herokuapp.com/https://ancient-chamber-80519.herokuapp.com/api/';
+//   private baseUrl: string = 'https://ancient-chamber-80519.herokuapp.com/api/';
+    private baseUrl: string = 'https://cors-anywhere.herokuapp.com/https://ancient-chamber-80519.herokuapp.com/api/';
 
     constructor(
         private http: Http,
@@ -131,4 +131,10 @@ export class HiveService {
         }
      }
     
+    getDashboardRecord(endpoint: string, id, timeData: object): Observable<object> {
+        let apiUrl = `${this.baseUrl}${endpoint}/${id}`;
+        return this.http.post(apiUrl, timeData)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
 }
