@@ -29,32 +29,35 @@
               </md-error> 
             </md-input-container>
 
-            <md-select placeholder="Vehicle Make" [(ngModel)]="year" name="vehicleYear" (change)="getMakes()">
+            <md-select class="dropDown" placeholder="Vehicle Year" [(ngModel)]="driver.vehicle_year" name="vehicleYear" (change)="getMakes(driver.vehicle_year)">
               <md-option *ngFor="let y of yearArray" [value]="y">
                 {{ y }}
               </md-option>
             </md-select>
-            <br />
+            <br />&nbsp;
             
-            <md-select placeholder="Vehicle Make" [(ngModel)]="make" name="vehicleMake" (change)="getModels()">
-              <md-option *ngFor="let m of makes" [value]="m.make_id">
+            <md-select class="dropDown" placeholder="Vehicle Make" [(ngModel)]="driver.vehicle_make" name="vehicleMake" (change)="getModels(driver.vehicle_year, driver.vehicle_make)">
+              <md-option *ngFor="let m of makes" [value]="m.make_display">
                   {{ m.make_display }}
               </md-option>
             </md-select>
-            <br />
+            <br />&nbsp;
         
-            <md-select placeholder="Vehicle Model" [(ngModel)]="model" name="vehicleModel">
-              <md-option *ngFor="let v of models" [value]="v.model_make_id">
+            <md-select class="dropDown" placeholder="Vehicle Model" [(ngModel)]="driver.vehicle_model" name="vehicleModel">
+              <md-option *ngFor="let v of models" [value]="v.model_name">
                   {{ v.model_name }}
               </md-option>
             </md-select>
-            <br />
-           
-            <button md-raised-button type="submit" [disabled]= "lastFormControl.hasError('minlength') || firstFormControl.hasError('minlength')" class="submitForm">Submit</button>
+            <br />&nbsp;
+             <span *ngIf="loading" class="h4">
+          <strong>Loading...  </strong>
+          <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /> 
+        </span>
+            <button md-raised-button type="submit" [disabled]="lastFormControl.hasError('minlength') || firstFormControl.hasError('minlength') || loading " class="submitForm">Submit</button>
           </form>
         </md-card-content>
       </md-card>
-      <button md-button routerLink="/admin" class="testCenter">Return to Admin</button>
+      <button md-button routerLink="/admin" [disabled]="loading" class="testCenter">Return to Admin</button>
     </div>
   </div>
 </div>

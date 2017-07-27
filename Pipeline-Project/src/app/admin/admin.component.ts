@@ -11,6 +11,7 @@ import { MdDialog, MdDialogRef } from '@angular/material';
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
+
 export class AdminComponent implements OnInit {
 
   vehs: any;
@@ -26,12 +27,15 @@ export class AdminComponent implements OnInit {
 
   // @ViewChild(MdPaginator) paginator: MdPaginator;
 
-  constructor(private HiveService: HiveService, public dialog: MdDialog){}
+  constructor(
+    private HiveService: HiveService,
+    public dialog: MdDialog){}
 
   ngOnInit() {
     this.loading = true;
     this.HiveService.checkCredentials();
     this.getLocation("driverinfo");
+
   }
 
   getLocation(endpoint:string){
@@ -61,7 +65,6 @@ export class AdminComponent implements OnInit {
           console.log("deleted")
     });
   }
-
 }
 
 export interface marker {
