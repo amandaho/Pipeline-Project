@@ -18,13 +18,14 @@ export class MapComponent implements OnInit {
   errorMessage: string;
   mode = 'Observable';
   mapTimer = 30;
-  buttonEnabled: boolean;
+  loading = false;
 
   retreiveDrivers: any;
 
   constructor(private HiveService: HiveService){}
 
   ngOnInit() {
+    this.loading = true;
     this.HiveService.checkCredentials();  
     this.getLocation();
     // this.getDriver();
@@ -39,6 +40,7 @@ export class MapComponent implements OnInit {
   }
 
   getLocation(){
+    this.loading = true;
     this.HiveService.getRecords("updatelocations")
       .subscribe(
           markers => {
@@ -51,12 +53,15 @@ export class MapComponent implements OnInit {
                       // console.log(this.markers[i]);
                   },
                   error => {
+                    this.loading = false;
                     // console.log("shit bad happend")
                   }
                 )
             }  
+      this.loading = false;
       },
         error =>  {
+          this.loading = false;
           this.errorMessage = <any>error; 
           console.log(this.errorMessage)
           this.errorMessage= "There is an error connecting to the API";

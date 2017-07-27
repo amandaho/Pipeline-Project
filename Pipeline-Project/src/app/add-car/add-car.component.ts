@@ -28,6 +28,7 @@ export class AddCarComponent implements OnInit {
   makesArray = [];
   modelsArray = [];
   yearArray = [];
+  loading = false;
 
   firstFormControl = new FormControl('', [
     Validators.minLength(2)
@@ -60,25 +61,37 @@ export class AddCarComponent implements OnInit {
         (+params['id']) ? this.getRecordForEdit() : null;
         this.getYears()
       });
-
-      console.log(this.yearArray)
   }
 
 
   saveDriver(id) {
+    this.loading = true;
     if (typeof id === "number") {
       console.log("got to edit driver")
       this.hiveService.editRecord("driver", this.driver, id)
         .subscribe(
-          driver => this.successMessage = "Record updated succesfully",
-          error => this.errorMessage = <any>error
+          driver => {
+            this.successMessage = "Record updated succesfully";
+            this.loading=false;
+          }, 
+          error => {
+            this.errorMessage = <any>error;
+            this.loading=false;
+          },
+          
         );
     } else {
       console.log("got to add driver")
       this.hiveService.addRecord("addDriver", this.driver)
         .subscribe(
-          driver => this.successMessage = "Record added succesfully",
-          error => this.errorMessage = <any>error
+         driver => {
+            this.successMessage = "Record added succesfully";
+            this.loading=false;
+         },
+          error => {
+            this.errorMessage = <any>error;
+            this.loading=false;
+          },
         );
 
     }

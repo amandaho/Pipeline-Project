@@ -1,13 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ApplicationRef} from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormControl, Validators } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule }   from '@angular/router';
-import { MdCardModule } from '@angular/material';
+import { MdCardModule, MdDatepickerModule } from '@angular/material';
+import * as moment from 'moment';
 
 
 import { MaterialModule } from '@angular/material';
