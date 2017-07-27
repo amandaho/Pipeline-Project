@@ -17,6 +17,7 @@ export class AdminComponent implements OnInit {
   errorMessage: string;
   successMessage: string;
   mode = 'Observable';
+  loading = false;
 
   // displayedColumns = ['id', 'lati', 'longi', 'status', 'timestamp'];
   displayedColumns = ['id'];
@@ -28,6 +29,7 @@ export class AdminComponent implements OnInit {
   constructor(private HiveService: HiveService, public dialog: MdDialog){}
 
   ngOnInit() {
+    this.loading = true;
     this.HiveService.checkCredentials();
     this.getLocation("driverinfo");
   }
@@ -36,11 +38,13 @@ export class AdminComponent implements OnInit {
     this.HiveService.getRecords(endpoint)
       .subscribe(
           vehs => {
-            this.vehs = vehs     
+            this.vehs = vehs    
+            this.loading = false; 
       })
   }
 
   deleteCar(id:number) {
+    this.loading = true;
 
     let dialogRef = this.dialog.open(DeleteConfirmComponent);
 
@@ -49,7 +53,10 @@ export class AdminComponent implements OnInit {
         this.HiveService.deleteRecord("driver", id)
           .subscribe(
             vehs => {this.successMessage = "Record(s) deleted succesfully"; this.getLocation("driverinfo");},
-            error =>  this.errorMessage = <any>error);
+            error =>  {
+              this.errorMessage = <any>error
+              this.loading = false;
+            });
       }
           console.log("deleted")
     });

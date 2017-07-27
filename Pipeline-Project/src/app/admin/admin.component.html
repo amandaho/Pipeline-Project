@@ -8,13 +8,18 @@
 <!-- <div class="example-container mat-elevation-z8"> -->
 <md-card class="adminTable">
   <md-card-header>
-    <!-- <md-card-title>
+     <!-- <md-card-title> -->
 
-    </md-card-title> -->
+    <!-- </md-card-title>  -->
      <md-toolbar class="cardHeading">
       <h1>All data coming from API</h1>
+
       <span class="fill-space"></span>
-      <button routerLink="/add-car" md-raised-button class="adminBtn float_rt">
+        <span *ngIf="loading" class="h4">
+          <strong>Loading...  </strong>
+          <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /> 
+        </span>
+      <button [disabled]="loading" routerLink="/add-car" md-raised-button class="adminBtn float_rt">
         <md-icon>directions_car</md-icon>
         <span>Add Vehicle</span>
       </button>
@@ -45,7 +50,7 @@
             <md-icon>sd_card</md-icon>
             <span>Edit</span>
           </button>        
-          <button (click)="deleteCar(vehs.vid)" md-raised-button class="adminBtn" >
+          <button [disabled]="loading" (click)="deleteCar(vehs.vid)" md-raised-button class="adminBtn" >
             <md-icon>close</md-icon>
             <span>Delete</span>
           </button>        
