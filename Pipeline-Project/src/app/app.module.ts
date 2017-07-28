@@ -32,6 +32,7 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { AddCarComponent } from './add-car/add-car.component';
 import { DeleteConfirmComponent } from './delete-confirm/delete-confirm.component';
 import { AuthGuard } from './auth-guard';
+import { DataTablesModule } from 'angular-datatables';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { AuthGuard } from './auth-guard';
     JsonpModule,
     routes,
     ChartsModule,
+    DataTablesModule,
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyCK35x5jSnSEfukM5AtISDXjyODWbSaLcg"
     })
