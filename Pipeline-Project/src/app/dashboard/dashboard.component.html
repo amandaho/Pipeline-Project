@@ -6,8 +6,10 @@
     <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /> 
   </span>
 
-Begin date: {{bDate}} <br>
-End Date: {{eDate}}
+ Begin date: {{unixBDate}} <br>
+End Date: {{unixEDate}} 
+
+<button md-raised-button (click)="runAPI()">Run API Call</button>
 
   <md-input-container class="pull-right dropDown">
     <input type="date" [(ngModel)]="eDate" mdInput placeholder="End Date" value="eDate" (change)="toEndTimestamp(eDate)" required> 
@@ -48,7 +50,7 @@ End Date: {{eDate}}
     <md-card class="example-card">
       <md-card-header>
         <md-card-title class="testText">
-          <strong>Delivery Totals by Day of Week</strong>
+          <strong>Totals Deliveries</strong>
         </md-card-title>
       </md-card-header>
       <hr>
@@ -70,4 +72,30 @@ End Date: {{eDate}}
 
 </div>
 
+<div class="row">
 
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <md-card class="example-card">
+      <md-card-header>
+        <md-card-title class="testText">
+          <strong>Total Distance</strong>
+        </md-card-title>
+      </md-card-header>
+      <hr>
+      <md-card-content>
+
+        <canvas baseChart height="75"
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [legend]="barChartLegend"
+          [chartType]="barChartType"
+          [colors]="lineChartColors"
+        >
+        </canvas>      
+
+      </md-card-content>
+    </md-card>
+  </div>
+
+</div>

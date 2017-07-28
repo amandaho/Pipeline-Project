@@ -56,13 +56,18 @@ export class AdminComponent implements OnInit {
       if(result){
         this.HiveService.deleteRecord("driver", id)
           .subscribe(
-            vehs => {this.successMessage = "Record(s) deleted succesfully"; this.getLocation("driverinfo");},
+            vehs => {
+              this.successMessage = "Record(s) deleted succesfully"; 
+              this.getLocation("driverinfo");
+              this.loading = false;
+            },
             error =>  {
               this.errorMessage = <any>error
               this.loading = false;
             });
       }
           console.log("deleted")
+          this.loading = false;
     });
   }
 }
