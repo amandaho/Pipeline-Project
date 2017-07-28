@@ -60,7 +60,7 @@ import { AuthGuard } from './auth-guard';
     routes,
     ChartsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCK35x5jSnSEfukM5AtISDXjyODWbSaLcg'
+      apiKey: " "
     })
   ],
   entryComponents: [DeleteConfirmComponent],

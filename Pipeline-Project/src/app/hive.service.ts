@@ -39,7 +39,7 @@ export class HiveService {
         return this.http.get(apiUrl)
           .map(this.extractData)
           .catch(this.handleError)
-    }s
+    }
 
     getRecord(endpoint: string, id): Observable<object> {
         let apiUrl = `${this.baseUrl}${endpoint}/${id}`;
