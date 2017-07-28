@@ -7,12 +7,14 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 
 
 @Component({
-  selector: 'app-admin',
+  selector: 'app-admin', 
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
 
 export class AdminComponent implements OnInit {
+
+  dtOptions: DataTables.Settings = {};
 
   vehs: any;
   errorMessage: string;
@@ -31,7 +33,12 @@ export class AdminComponent implements OnInit {
     private HiveService: HiveService,
     public dialog: MdDialog){}
 
-  ngOnInit() {
+  ngOnInit(): void  {
+
+    this.dtOptions = {
+      pagingType: 'full_numbers'
+    };
+    
     this.loading = true;
     this.HiveService.checkCredentials();
     this.getLocation("driverinfo");
