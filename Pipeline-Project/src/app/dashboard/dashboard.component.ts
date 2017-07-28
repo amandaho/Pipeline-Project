@@ -17,8 +17,10 @@ export class DashboardComponent implements OnInit {
   loading = false;
   selectedDriver1;
   selectedDriver2;
-  eDate = moment().unix();
-  bDate = moment().subtract(7, 'days').unix();
+  eDate;
+  bDate;
+  unixEDate = moment().unix();
+  unixBDate = moment().subtract(7, 'days').unix();
   timeData = {
     endTime: this.eDate,
     startTime: this.bDate
@@ -28,7 +30,7 @@ export class DashboardComponent implements OnInit {
 
   toBeginTimestamp(strDate){
     // let ts = moment(strDate, "M/D/YYYY").valueOf()
-    this.bDate = moment(strDate).unix()
+    this.unixBDate = moment(strDate).unix()
     this.timeData.startTime = this.bDate;
     this.getDriverData("sumbydow", 0, this.timeData, 0);
     this.getDriverData("sumbydow", this.selectedDriver1, this.timeData, 1);
@@ -38,7 +40,7 @@ export class DashboardComponent implements OnInit {
 
   toEndTimestamp(strDate){
     // let ts = moment(strDate, "M/D/YYYY").valueOf()
-    this.eDate = moment(strDate).unix()
+    this.unixEDate = moment(strDate).unix()
     this.timeData.endTime = this.eDate;
     this.getDriverData("sumbydow", 0, this.timeData, 0);
     this.getDriverData("sumbydow", this.selectedDriver1, this.timeData, 1);
