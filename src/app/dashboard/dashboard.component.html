@@ -1,29 +1,27 @@
+
 <div class="row">
+
   <div class="col-xs-12 col-sm-12 col-md-12">
 
-  <span *ngIf="loading" class="h4">
-    <strong>Loading...  </strong>
-    <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /> 
-  </span>
+    <span *ngIf="loading" class="h4">
+      <strong>Loading...  </strong>
+      <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /> 
+    </span>
 
-{{selectedDriver1}}
-{{selectedDriver2}}
+    <button md-raised-button (click)="runAPI()" [disabled]="loading">
+      <md-icon>autorenew</md-icon>
+      <span>Update Charts</span>
+    </button>
 
-<button md-raised-button (click)="runAPI()" [disabled]="loading">
-	<md-icon>autorenew</md-icon>
-	<span>Refresh</span>
-</button>
+    <md-input-container class="pull-right dropDown">
+      <!-- <input type="date" [(ngModel)]="eDate" mdInput placeholder="End Date" value="eDate" required>  -->
+       <input type="date" [(ngModel)]="eDate" mdInput placeholder="End Date" value="eDate" (change)="toEndTimestamp(eDate)" required>  
+    </md-input-container>
 
-
-  <md-input-container class="pull-right dropDown">
-    <input type="date" [(ngModel)]="eDate" mdInput placeholder="End Date" value="eDate" (change)="toEndTimestamp(eDate)" required> 
-    <!-- <input type="date" [(ngModel)]="eDate" mdInput placeholder="End Date" value="eDate" required> -->
-  </md-input-container>
-
-  <md-input-container class="pull-right dropDown">
-    <input type="date" [(ngModel)]="bDate" mdInput placeholder="Begin Date" value="bDate" (change)="toBeginTimestamp(bDate)" required> 
-    <!-- <input type="date" [(ngModel)]="bDate" mdInput placeholder="Begin Date" value="bDate" required> -->
-  </md-input-container>
+    <md-input-container class="pull-right dropDown">
+      <!-- <input type="date" [(ngModel)]="bDate" mdInput placeholder="Begin Date" value="bDate" required>  -->
+       <input type="date" [(ngModel)]="bDate" mdInput placeholder="Begin Date" value="bDate" (change)="toBeginTimestamp(bDate)" required>      <!-- <input type="date" [(ngModel)]="bDate" mdInput placeholder="Begin Date" value="bDate" required> -->
+    </md-input-container>
 
   </div>
 
@@ -43,12 +41,107 @@
       </md-option>
     </md-select>
 
+  </div>
+
+  <div class="col-xs-12 col-sm-12 col-md-12">
+
+    <md-tab-group (selectChange)="onLinkClick($event)">
+
+      <md-tab label="Total Deliveries" [disabled]="loading">
+
+        <md-card class="chartCard">
+
+          <md-card-header>
+            <md-card-title class="testText">
+              <strong>Totals Deliveries</strong>
+            </md-card-title>
+          </md-card-header>
+
+          <hr>
+
+          <md-card-content>
+
+            <canvas baseChart height="75"
+              [datasets]="lineChartData"
+              [labels]="lineChartLabels"
+              [options]="lineChartOptions"
+              [colors]="lineChartColors"
+              [legend]="lineChartLegend"
+              [chartType]="lineChartType"
+            >
+            </canvas>      
+
+          </md-card-content>
+        </md-card>
+
+      </md-tab>
+
+      <md-tab label="Average Total Distance" [disabled]="loading">
+
+        <md-card class="chartCard">
+
+          <md-card-header>
+            <md-card-title class="testText">
+              <strong>Average Total Distance:</strong> <br>
+              <small>Given a time range, averages the miles per day traveled by all cars in the dataset. By providing a vehicle ID, this will average the given car's miles per day for the range compared to the average per day for the rest of the dataset.</small>
+            </md-card-title>
+          </md-card-header>
+
+          <hr>
+
+          <md-card-content>
+
+            <canvas baseChart height="75"
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType"
+              [colors]="lineChartColors"
+            >
+            </canvas>      
+
+          </md-card-content>
+        </md-card>
+        
+      </md-tab>
+
+      <md-tab label="Top 5" [disabled]="loading">
+
+        <md-card class="chartCard">
+
+          <md-card-header>
+            <md-card-title class="testText">
+              <strong>Total Distance</strong>
+            </md-card-title>
+          </md-card-header>
+
+          <hr>
+
+          <md-card-content>
+
+            <canvas baseChart height="75"
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType"
+              [colors]="lineChartColors"
+            >
+            </canvas>      
+
+          </md-card-content>
+        </md-card>
+        
+      </md-tab>
+
+  </md-tab-group>
 
   </div>
-  
+
 </div>
 
-<div class="row">
+<!-- <div class="row">
 
   <div class="col-xs-12 col-sm-12 col-md-12">
     <md-card class="example-card">
@@ -102,4 +195,4 @@
     </md-card>
   </div>
 
-</div>
+</div> -->

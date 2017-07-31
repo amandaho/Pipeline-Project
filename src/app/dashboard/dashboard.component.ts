@@ -26,46 +26,82 @@ export class DashboardComponent implements OnInit {
     endTime: this.unixEDate,
     startTime: this.unixBDate
   };
+  tabSwitch = "sumbydow";
 
   constructor(private HiveService: HiveService){}
 
-  updateCharts(){
-    this.getLineData("sumbydow", 0, this.timeData, 0, 1);
-    this.getLineData("sumbydow", this.selectedDriver1, this.timeData, 1, 1);
-    this.getLineData("sumbydow", this.selectedDriver2, this.timeData, 2, 1);        
-    this.getLineData("driver/routehistory", 0, this.timeData, 0, 1);
-    this.getLineData("driver/routehistory", this.selectedDriver1, this.timeData, 1, 1);
-    this.getLineData("driver/routehistory", this.selectedDriver2, this.timeData, 2, 1);        
+  updateCharts(apiNumber){
+
+    this.getLineData(this.tabSwitch, 0, this.timeData, 0, apiNumber);
+
+    if (this.selectedDriver1 >= 0) {
+      // console.log('not false for driver1')
+      this.getLineData(this.tabSwitch, this.selectedDriver1, this.timeData, 1, apiNumber);
+    }
+
+    if (this.selectedDriver2 >= 0) {
+      // console.log('not false for driver2')
+      this.getLineData(this.tabSwitch, this.selectedDriver2, this.timeData, 2, apiNumber);     
+    }    
+    
   }
 
   toBeginTimestamp(strDate){
-    // let ts = moment(strDate, "M/D/YYYY").valueOf()
     this.unixBDate = moment(strDate).unix()
     this.timeData.startTime = this.unixBDate;
-    this.updateCharts();      
-    // return strDate
+    this.runAPI();     
   }
 
   toEndTimestamp(strDate){
-    // let ts = moment(strDate, "M/D/YYYY").valueOf()
     this.unixEDate = moment(strDate).unix()
     this.timeData.endTime = this.unixEDate;
-    this.updateCharts();      
-    // return strDate
+    this.runAPI();     
   }
 
   runAPI() {
     this.loading = true;
-    this.getLineData("sumbydow", 0, this.timeData, 0, 1);
-    this.getLineData("driver/routehistory", 0, this.timeData, 0, 2);
+
+    if (this.tabSwitch == "sumbydow") {
+      this.updateCharts(1)
+    }
+
+    if (this.tabSwitch == "driver/routehistory") {
+      this.updateCharts(2)
+    }
+
+    if (this.tabSwitch == "topfiveincidents") {
+      this.updateCharts(1)
+    }
+
+    // this.getLineData("driver/routehistory", 0, this.timeData, 0, 2);
   }
+
+onLinkClick($event: any) {
+
+  this.loading = true;
+
+  if ( $event.index == 0){
+    this.tabSwitch = "sumbydow";
+      this.updateCharts(1)
+  }
+
+  if ( $event.index == 1){
+    this.tabSwitch = "driver/routehistory";
+      this.updateCharts(2)
+  }
+
+  if ( $event.index == 2){
+    this.tabSwitch = "topfiveincidents";
+    // console.log("Currently not functional")
+  }
+
+}
 
   ngOnInit() {
 
     this.loading = true;
-    // console.log(this.selectedDriver1)
     this.getDrivers("driverinfo");
-    // this.getLineData("sumbydow", 0, this.timeData, 0, 1);
+    this.runAPI()
     // this.getLineData("driver/routehistory", 0, this.timeData, 0, 2);
   }
 
@@ -79,21 +115,17 @@ export class DashboardComponent implements OnInit {
   }
 
   getLineData(endpoint:string, id, timeData: object, numba, flag){
-    this.loading=true;
+    this.loading = true;
     this.HiveService.getDashboardRecord(endpoint, id, timeData)
       .subscribe(
           driverData => {
 
             if (flag == 1){
               this.driverData = driverData;
-              // console.log(flag)
-              // console.log(this.driverData);
-
             }
 
             if (flag == 2){
               this.dataObject = [driverData];
-
             }
 
             this.driverData = driverData;
@@ -109,8 +141,6 @@ export class DashboardComponent implements OnInit {
 
               this.lineChartLabels = labels;
               this.lineChartData[numba].data = data;
-              // console.log(this.lineChartData[numba])
-              // this.loading = false;
             } 
 
             if (flag == 2) {
@@ -122,10 +152,9 @@ export class DashboardComponent implements OnInit {
 
               this.barChartLabels = labels;
               this.barChartData[numba].data = moreData;
-              // console.log(this.barChartData[numba])
-              this.loading = false;            } 
-
-            
+            } 
+            this.loading = false
+            console.log(data)
       },
       error => (this.loading = false)
         )
@@ -133,14 +162,12 @@ export class DashboardComponent implements OnInit {
 
   driverSelect1(id){
     this.loading = true;
-    this.getLineData("sumbydow", this.selectedDriver1, this.timeData, 1, 1);
-    this.getLineData("driver/routehistory", this.selectedDriver1, this.timeData, 1, 2);
+    this.runAPI();
   }
 
   driverSelect2(id){
     this.loading = true;
-    this.getLineData("sumbydow", this.selectedDriver2, this.timeData, 2, 1);
-    this.getLineData("driver/routehistory", this.selectedDriver2, this.timeData, 2, 2);
+    this.runAPI();
   }
 
   // Line Chart Data
@@ -172,7 +199,7 @@ export class DashboardComponent implements OnInit {
   public barChartLegend:boolean = true;
  
   // public barChartData:any[] = [
-public barChartData:Array<any> = [
+  public barChartData:Array<any> = [
 
     { data: [], label: 'All Drivers' },
     { data: [], label: 'Driver 1' },
