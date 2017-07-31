@@ -17,10 +17,13 @@ export class DashboardComponent implements OnInit {
   loading = false;
   selectedDriver1;
   selectedDriver2;
+
+  //Default the date to today because Amanda said so
   eDate;
   bDate;
+
   unixEDate = moment().unix();
-  unixBDate = moment().subtract(7, 'days').unix();
+  unixBDate = moment().subtract(5, 'days').unix();
   dataObject;
   timeData = {
     endTime: this.unixEDate,
@@ -33,17 +36,24 @@ export class DashboardComponent implements OnInit {
   updateCharts(apiNumber){
 
     this.getLineData(this.tabSwitch, 0, this.timeData, 0, apiNumber);
+    this.loading = true;
 
-    if (this.selectedDriver1 >= 0) {
-      // console.log('not false for driver1')
-      this.getLineData(this.tabSwitch, this.selectedDriver1, this.timeData, 1, apiNumber);
-    }
+    setTimeout(() => {
+      this.loading = true;
+      if (this.selectedDriver1 >= 0) {
+        // console.log('not false for driver1')
+        this.getLineData(this.tabSwitch, this.selectedDriver1, this.timeData, 1, apiNumber);
+      }
+    }, 1000)
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = true;
+      if (this.selectedDriver2 >= 0) {
+        // console.log('not false for driver2')
+        this.getLineData(this.tabSwitch, this.selectedDriver2, this.timeData, 2, apiNumber);     
+      }    
+    }, 15000)
 
-    if (this.selectedDriver2 >= 0) {
-      // console.log('not false for driver2')
-      this.getLineData(this.tabSwitch, this.selectedDriver2, this.timeData, 2, apiNumber);     
-    }    
-    
   }
 
   toBeginTimestamp(strDate){
@@ -69,11 +79,6 @@ export class DashboardComponent implements OnInit {
       this.updateCharts(2)
     }
 
-    if (this.tabSwitch == "topfiveincidents") {
-      this.updateCharts(1)
-    }
-
-    // this.getLineData("driver/routehistory", 0, this.timeData, 0, 2);
   }
 
 onLinkClick($event: any) {
@@ -82,16 +87,17 @@ onLinkClick($event: any) {
 
   if ( $event.index == 0){
     this.tabSwitch = "sumbydow";
-      this.updateCharts(1)
+    this.updateCharts(1)
   }
 
   if ( $event.index == 1){
     this.tabSwitch = "driver/routehistory";
-      this.updateCharts(2)
+    this.updateCharts(2)
   }
 
   if ( $event.index == 2){
     this.tabSwitch = "topfiveincidents";
+    this.getTopFive(this.tabSwitch, this.timeData, 0);
     // console.log("Currently not functional")
   }
 
@@ -99,10 +105,9 @@ onLinkClick($event: any) {
 
   ngOnInit() {
 
-    this.loading = true;
-    this.getDrivers("driverinfo");
-    this.runAPI()
-    // this.getLineData("driver/routehistory", 0, this.timeData, 0, 2);
+    // this.loading = true;
+    // this.getDrivers("driverinfo");
+    // this.runAPI()
   }
 
   getDrivers(endpoint:string){
@@ -112,6 +117,32 @@ onLinkClick($event: any) {
             this.drivers = drivers;    
             this.loading = false;
       })
+  }
+
+  getTopFive(endpoint: string, timeData: object, numba){
+    this.loading = true;
+    this.HiveService.getRecord(endpoint, timeData)
+      .subscribe(
+          driverData => {
+            this.driverData = driverData;
+            let dataTopFive = [];
+            let labels : Array<any> = new Array();
+
+            for (var i = 0; i < this.driverData.length; i++) {
+              dataTopFive =  _.concat(dataTopFive, this.driverData[i].status_total);
+              labels =  _.concat(labels, this.driverData[i].dow);
+            } 
+
+            this.lineChartLabels = labels;
+            this.lineChartData[numba].data = dataTopFive;
+
+            this.loading = false
+            console.log(dataTopFive)
+      },
+      error => (this.loading = false)
+      )
+
+    
   }
 
   getLineData(endpoint:string, id, timeData: object, numba, flag){

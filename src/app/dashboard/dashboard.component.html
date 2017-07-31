@@ -15,12 +15,12 @@
 
     <md-input-container class="pull-right dropDown">
       <!-- <input type="date" [(ngModel)]="eDate" mdInput placeholder="End Date" value="eDate" required>  -->
-       <input type="date" [(ngModel)]="eDate" mdInput placeholder="End Date" value="eDate" (change)="toEndTimestamp(eDate)" required>  
+       <input type="date" [disabled]="loading" [(ngModel)]="eDate" mdInput placeholder="End Date" value="eDate" (change)="toEndTimestamp(eDate)" required>  
     </md-input-container>
 
     <md-input-container class="pull-right dropDown">
       <!-- <input type="date" [(ngModel)]="bDate" mdInput placeholder="Begin Date" value="bDate" required>  -->
-       <input type="date" [(ngModel)]="bDate" mdInput placeholder="Begin Date" value="bDate" (change)="toBeginTimestamp(bDate)" required>      
+       <input type="date" [disabled]="loading" [(ngModel)]="bDate" mdInput placeholder="Begin Date" value="bDate" (change)="toBeginTimestamp(bDate)" required>      
     </md-input-container>
 
   </div>
