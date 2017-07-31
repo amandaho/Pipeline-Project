@@ -27,11 +27,12 @@
   </md-card-header>
     <hr>
   <md-card-content>
-   <table datatable [dtOptions]="dtOptions" class="row-border hover" id="dataTable" style="width:100%">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" id="dataTable" style="width:100%"> 
     <thead>
       <tr>
         <th>Vehicle ID</th>
-        <th>Driver Name</th>
+        <th>Driver First Name</th>
+        <th>Driver Last Name</th>
         <th>Year</th>
         <th>Make</th>
         <th>Model</th>
@@ -41,7 +42,8 @@
     <tbody>
       <tr *ngFor="let vehs of vehs">
         <td>{{vehs.vid}}</td>
-        <td>{{vehs.driver_last_name + ', ' + vehs.driver_first_name}}</td>
+        <td>{{vehs.driver_first_name}}</td>
+        <td>{{vehs.driver_last_name}}</td>
         <td>{{vehs.vehicle_year}}</td>
         <td>{{vehs.vehicle_make}}</td>
         <td>{{vehs.vehicle_model}}</td>

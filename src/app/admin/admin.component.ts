@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { MdPaginator } from '@angular/material';
+import { Component, OnInit, Input } from '@angular/core';
 import { HiveService } from '../hive.service';
 import { NgModule, ApplicationRef } from '@angular/core';
 import { DeleteConfirmComponent } from '../delete-confirm/delete-confirm.component'
 import { MdDialog, MdDialogRef } from '@angular/material';
+
+import { Subject } from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
 
 
 @Component({
@@ -14,8 +16,8 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 
 export class AdminComponent implements OnInit {
 
-  dtOptions: DataTables.Settings = {};
-
+  dtOptions: any = {};
+  dtTrigger: Subject<any> = new Subject();
   vehs: any;
   errorMessage: string;
   successMessage: string;
@@ -27,18 +29,45 @@ export class AdminComponent implements OnInit {
   // exampleDatabase = new ExampleDatabase();
   dataSource: HiveService | null;
 
-  // @ViewChild(MdPaginator) paginator: MdPaginator;
-
   constructor(
     private HiveService: HiveService,
     public dialog: MdDialog){}
 
-  ngOnInit(): void  {
+  ngOnInit(): void {
 
     this.dtOptions = {
-      pagingType: 'full_numbers'
-    };
-    
+      paging: true,
+      searching: true,
+      columns: [
+        {
+          title: 'ID',
+          data: 'id'
+        }, {
+          title: 'Driver First Name',
+          data: 'driver_first_name'
+        }, {
+          title: 'Driver Last name',
+          data: 'driver_last_name'
+        }, {
+          title: 'Year',
+          data: 'vehicle_year'
+        }, {
+          title: 'Make',
+          data: 'vehicle_make'
+        },{
+          title: 'Model',
+          data: 'vehicle_model'
+        },{
+          title: 'Admin'
+        },
+      ],
+      dom: 'Bfrtip',
+      buttons: [
+        'colvis',
+        'copy', 'csv', 'excel', 'pdf', 'print'  
+      ]
+    }
+
     this.loading = true;
     this.HiveService.checkCredentials();
     this.getLocation("driverinfo");
@@ -48,10 +77,13 @@ export class AdminComponent implements OnInit {
   getLocation(endpoint:string){
     this.HiveService.getRecords(endpoint)
       .subscribe(
-          vehs => {
-            this.vehs = vehs    
-            this.loading = false; 
-      })
+        vehs => {
+          this.vehs = vehs;
+          this.dtTrigger.next(); 
+          this.loading = false; 
+        }
+      )
+
   }
 
   deleteCar(id:number) {
@@ -77,6 +109,8 @@ export class AdminComponent implements OnInit {
           this.loading = false;
     });
   }
+  
+
 }
 
 export interface marker {
