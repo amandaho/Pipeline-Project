@@ -105,9 +105,9 @@ onLinkClick($event: any) {
 
   ngOnInit() {
 
-    // this.loading = true;
-    // this.getDrivers("driverinfo");
-    // this.runAPI()
+    this.loading = true;
+    this.getDrivers("driverinfo");
+    this.runAPI()
   }
 
   getDrivers(endpoint:string){

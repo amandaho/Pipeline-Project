@@ -5,9 +5,7 @@
     min-height: 600px;
 }
 
-md-sidenav {
-  width: 200px;
-}
+
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -38,15 +36,19 @@ md-sidenav button, md-sidenav md-icon {
 }
   */
 
+.navBar{
+  background-color: #a15c31 !important;
+}
+
  md-sidenav {
   width: 175px;
-  background-color: #3f51b5; 
-  color: #e6e8f5 !important;
+  background-color: #a15c31; 
+  color: #ffffff !important;
 }
 
 md-sidenav md-icon, md-sidenav button {
   padding-right: 20px !important;
-  color: #e6e8f5 !important;
+  color: #ffffff !important;
 }
 
  /* md-sidenav.mat-sidenav-closed {
