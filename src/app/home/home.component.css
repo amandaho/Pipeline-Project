@@ -3,18 +3,8 @@
     color: white;
 }
 
-.carousel-inner h3 {
-    color: black;
-}
-
-.carousel-inner p {
-    color: black;
-}
-
-.image {
-    display: block;
-    width: 100%; 
-    height: auto;
+ul { 
+    list-style-type: none;
 }
 
 .overlay {
