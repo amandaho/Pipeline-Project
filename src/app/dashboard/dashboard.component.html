@@ -20,21 +20,23 @@
 
     <md-input-container class="pull-right dropDown">
       <!-- <input type="date" [(ngModel)]="bDate" mdInput placeholder="Begin Date" value="bDate" required>  -->
-       <input type="date" [(ngModel)]="bDate" mdInput placeholder="Begin Date" value="bDate" (change)="toBeginTimestamp(bDate)" required>      <!-- <input type="date" [(ngModel)]="bDate" mdInput placeholder="Begin Date" value="bDate" required> -->
+       <input type="date" [(ngModel)]="bDate" mdInput placeholder="Begin Date" value="bDate" (change)="toBeginTimestamp(bDate)" required>      
     </md-input-container>
 
   </div>
 
   <div class="col-xs-12 col-sm-12 col-md-12">
 
-    <md-select [disabled]="loading" class="pull-right dropDown" placeholder="Driver 1 Name" [(ngModel)]="selectedDriver1" name="driverName1" (change)="driverSelect1(selectedDriver1)">
+    <!-- <md-select [disabled]="loading" class="pull-right dropDown" placeholder="Driver 1 Name" [(ngModel)]="selectedDriver1" name="driverName1" (change)="driverSelect1(selectedDriver1)"> -->
+     <md-select [disabled]="loading" class="pull-right dropDown" placeholder="Driver 1 Name" [(ngModel)]="selectedDriver1" name="driverName1"> 
       <md-option>None</md-option>
       <md-option class='testText' *ngFor="let d of drivers" [value]="d.vid">
         {{ d.driver_last_name + ', ' + d.driver_first_name }}
       </md-option>
     </md-select>
 
-    <md-select [disabled]="loading" class="pull-right dropDown" placeholder="Driver 2 Name" [(ngModel)]="selectedDriver2" name="driverName2" (change)="driverSelect2(selectedDriver2)">
+    <!-- <md-select [disabled]="loading" class="pull-right dropDown" placeholder="Driver 2 Name" [(ngModel)]="selectedDriver2" name="driverName2" (change)="driverSelect2(selectedDriver2)"> -->
+    <md-select [disabled]="loading" class="pull-right dropDown" placeholder="Driver 2 Name" [(ngModel)]="selectedDriver2" name="driverName2">
       <md-option>None</md-option>
       <md-option class='testText' *ngFor="let d of drivers" [value]="d.vid">
         {{ d.driver_last_name + ', ' + d.driver_first_name }}
@@ -106,7 +108,7 @@
         
       </md-tab>
 
-      <md-tab label="Top 5" [disabled]="loading">
+      <md-tab label="Top 5" disabled>
 
         <md-card class="chartCard">
 

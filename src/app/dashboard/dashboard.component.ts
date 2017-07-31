@@ -49,13 +49,13 @@ export class DashboardComponent implements OnInit {
   toBeginTimestamp(strDate){
     this.unixBDate = moment(strDate).unix()
     this.timeData.startTime = this.unixBDate;
-    this.runAPI();     
+    // this.runAPI();     
   }
 
   toEndTimestamp(strDate){
     this.unixEDate = moment(strDate).unix()
     this.timeData.endTime = this.unixEDate;
-    this.runAPI();     
+    // this.runAPI();     
   }
 
   runAPI() {
@@ -160,15 +160,15 @@ onLinkClick($event: any) {
         )
   }
 
-  driverSelect1(id){
-    this.loading = true;
-    this.runAPI();
-  }
+  // driverSelect1(id){
+  //   this.loading = true;
+  //   this.runAPI();
+  // }
 
-  driverSelect2(id){
-    this.loading = true;
-    this.runAPI();
-  }
+  // driverSelect2(id){
+  //   this.loading = true;
+  //   this.runAPI();
+  // }
 
   // Line Chart Data
   public lineChartData:Array<any> = [
