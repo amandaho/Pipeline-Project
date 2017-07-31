@@ -1,4 +1,4 @@
-<button md-raised-button (click)="onClick()" [disabled]="loading">
+<button md-raised-button (click)="onClick()" [disabled]="loading" class="buttonThemed">
 	<md-icon>autorenew</md-icon>
 	<span>Refresh</span>
 </button>
@@ -7,36 +7,40 @@
 
 <h4 id="countDown"><md-icon>timer</md-icon> Auto Refresh In: {{mapTimer}}</h4>
 
-<div id="map">
-    <agm-map 
-      [latitude]="lat" 
-      [longitude]="lng"
-      [zoom]="zoom"
-      [disableDefaultUI]=false
-      [zoomControl]=true
-      [fullscreenControl]=true
-      [mapTypeControl]=true
-      [scrollwheel]=false
-      >
+<md-card class="chartCard">
+  <md-card-content>
+    <div id="map">
+      <agm-map 
+        [latitude]="lat" 
+        [longitude]="lng"
+        [zoom]="zoom"
+        [disableDefaultUI]=false
+        [zoomControl]=true
+        [fullscreenControl]=true
+        [mapTypeControl]=true
+        [scrollwheel]=false
+        >
 
-      <agm-marker
-        *ngFor="let m of markers"
-        (markerClick)="clickedMarker(m)"   
-        [latitude]="m.lati" 
-        [longitude]="m.longi"
-        [iconUrl]="(m.status == '1') ? 'http://maps.google.com/mapfiles/kml/pal4/icon15.png' : 'http://maps.google.com/mapfiles/kml/pal4/icon62.png'">
-      
-      <agm-info-window>
-        <strong>{{m.driver_last_name}}, {{m.driver_first_name}}</strong>
-        <br />Vehicle ID: {{m.vid}}
-        <hr>Latitude: {{m.lati}}
-        <br />Longitude: {{m.longi}}
-        <br />Vehicle Status: {{m.status}}
-        <hr>Vehicle Make: {{m.vehicle_make}} 
-        <br />Vehicle Model: {{m.vehicle_model}}
-        <br />Vehicle Year: {{m.vehicle_year}}
-      </agm-info-window>
-      
-      </agm-marker>
-    </agm-map>
-  </div>
+        <agm-marker
+          *ngFor="let m of markers"
+          (markerClick)="clickedMarker(m)"   
+          [latitude]="m.lati" 
+          [longitude]="m.longi"
+          [iconUrl]="(m.status == '1') ? 'http://maps.google.com/mapfiles/kml/pal4/icon15.png' : 'http://maps.google.com/mapfiles/kml/pal4/icon62.png'">
+        
+        <agm-info-window>
+          <strong>{{m.driver_last_name}}, {{m.driver_first_name}}</strong>
+          <br />Vehicle ID: {{m.vid}}
+          <hr>Latitude: {{m.lati}}
+          <br />Longitude: {{m.longi}}
+          <br />Vehicle Status: {{m.status}}
+          <hr>Vehicle Make: {{m.vehicle_make}} 
+          <br />Vehicle Model: {{m.vehicle_model}}
+          <br />Vehicle Year: {{m.vehicle_year}}
+        </agm-info-window>
+        
+        </agm-marker>
+      </agm-map>
+    </div>
+  </md-card-content>
+</md-card>
