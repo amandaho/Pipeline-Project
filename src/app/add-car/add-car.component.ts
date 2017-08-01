@@ -138,3 +138,12 @@ export class AddCarComponent implements OnInit {
   }
 
 }
+
+// interface driver {
+//   vehicle_make;
+//   vehicle_year;
+//   vehicle_model;
+//   driver_first_name;
+//   driver_last_name;
+//   vid;
+// }
