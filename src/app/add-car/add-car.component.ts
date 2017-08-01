@@ -21,7 +21,14 @@ export class AddCarComponent implements OnInit {
 
   successMessage: string;
   errorMessage: string;
-  driver: object = {};
+  driver: object = {
+    vehicle_make: <string> null,
+    vehicle_year: <number> null,
+    vehicle_model: <string> null,
+    driver_first_name: <string> null,
+    driver_last_name: <string> null,
+    vid: <number> null,
+  };
   years: any;
   makes: any;
   models: any;
