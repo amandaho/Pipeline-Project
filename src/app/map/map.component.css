@@ -9,3 +9,9 @@ button {
 #countDown {
   float: right;
 }
+
+ .adminBtn {
+    background-color: #3f51b5 !important;
+    color: white; 
+    /* margin: 5px 5px 5px 5px; */
+} 

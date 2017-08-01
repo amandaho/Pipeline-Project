@@ -36,23 +36,22 @@ export class DashboardComponent implements OnInit {
   updateCharts(apiNumber){
 
     this.getLineData(this.tabSwitch, 0, this.timeData, 0, apiNumber);
-    this.loading = true;
 
-    setTimeout(() => {
-      this.loading = true;
-      if (this.selectedDriver1 >= 0) {
-        // console.log('not false for driver1')
-        this.getLineData(this.tabSwitch, this.selectedDriver1, this.timeData, 1, apiNumber);
-      }
-    }, 1000)
-    this.loading = true;
-    setTimeout(() => {
-      this.loading = true;
-      if (this.selectedDriver2 >= 0) {
-        // console.log('not false for driver2')
-        this.getLineData(this.tabSwitch, this.selectedDriver2, this.timeData, 2, apiNumber);     
-      }    
-    }, 15000)
+    if (this.selectedDriver1 >= 0) {
+      setTimeout(() => {
+        this.loading = true;
+          // console.log('not false for driver1')
+          this.getLineData(this.tabSwitch, this.selectedDriver1, this.timeData, 1, apiNumber);
+      }, 10000)
+    }
+
+    if (this.selectedDriver2 >= 0) {
+      setTimeout(() => {
+        this.loading = true;
+          // console.log('not false for driver2')
+          this.getLineData(this.tabSwitch, this.selectedDriver2, this.timeData, 2, apiNumber);     
+      }, 15000)
+    }
 
   }
 
@@ -137,12 +136,10 @@ onLinkClick($event: any) {
             this.lineChartData[numba].data = dataTopFive;
 
             this.loading = false
-            console.log(dataTopFive)
+            // console.log(dataTopFive)
       },
       error => (this.loading = false)
       )
-
-    
   }
 
   getLineData(endpoint:string, id, timeData: object, numba, flag){
@@ -185,21 +182,11 @@ onLinkClick($event: any) {
               this.barChartData[numba].data = moreData;
             } 
             this.loading = false
-            console.log(data)
+            // console.log(data)
       },
       error => (this.loading = false)
         )
   }
-
-  // driverSelect1(id){
-  //   this.loading = true;
-  //   this.runAPI();
-  // }
-
-  // driverSelect2(id){
-  //   this.loading = true;
-  //   this.runAPI();
-  // }
 
   // Line Chart Data
   public lineChartData:Array<any> = [
