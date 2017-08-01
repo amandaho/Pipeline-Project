@@ -47,7 +47,9 @@
     "ng2-charts": "^1.6.0",
     "npm": "^5.3.0",
     "rxjs": "^5.1.0",
-    "zone.js": "^0.8.4"
+    "zone.js": "^0.8.4",
+    "@types/datatables.net": "^1.10.5",
+    "@types/jquery": "^3.2.10"
   },
   "devDependencies": {
     "@angular/language-service": "^4.0.0",
