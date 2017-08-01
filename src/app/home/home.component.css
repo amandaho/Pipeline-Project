@@ -9,43 +9,22 @@
     background-size: cover;  */
 }
 
-.carousel-inner h3 {
-    color: black;
+ul { 
+    list-style-type: none;
 }
 
-.carousel-inner p {
-    color: black;
+.hiveInfo {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
-.image {
-    display: block;
-    width: 100%; 
-    height: auto;
-}
-
-.overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
+.cards {
     width: 100%;
-    opacity: 0;
-    transition: .5s ease;
-    background-color: #008CBA;
+    height: 500px;
 }
 
-.container:hover .overlay {
-    opacity: 1;
+.developers {
+    text-align: center;
 }
 
-.text {
-    color: white;
-    font-size: 20px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-}
