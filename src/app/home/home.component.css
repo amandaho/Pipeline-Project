@@ -1,30 +1,127 @@
 .jumbotron {
-    background-image: url("/assets/theHivelogo.png");
+    background-image: url("/assets/honeyComb_bkgd.jpg");
     background-size: cover;
-    background-position: center;
+    background-position: center; 
+    height: 450px;   
+    background-size: cover;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.jumbotron img {
     width: 100%;
-    height: 450px; 
-    /* padding-left: 0;
-    margin-left: 0; 
-    background-size: cover;  */
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.container {
+    /* padding: 0; */
+    width: 100%;
+}
+
+#hiveWrapHeader {
+  width: 100%;
+  /* padding-left: 10%;
+  padding-right: 10%; */
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 25px;
+  line-height: 45px;
+  color: #2f2e2e;
+}
+
+#hiveWrapHeader hr {
+  width: 300px;
+  border: 0;
+  border-top: 3px solid goldenrod;
+}
+
+#hiveWrapSubHeader h4, li {
+  font-size: 20px;
+  text-align: center;
+  color: #949191;
+}
+
+#hiveWrapSubHeader li {
+  text-transform: uppercase;
+  line-height: 25px;
+  list-style: none;
+}
+
+#techUsed {
+    margin-top: 75px;
+    /* margin-bottom: 75px; */
+    padding: 20px 0 20px 0;
+    border-top: 3px solid goldenrod; 
+    border-bottom: 3px solid goldenrod; 
+}
+
+#techUsed h1 {
+    text-align: center;
+}
+
+#techUsed img {
+    height: 150px;
+    width: 150px;
+}
+
+#techUsed img:hover {
+    /* opacity: .8; */
+    transform: scale(1.1);
+}
+
+#servicesWrap {
+  width: 100%;
+  /* height: 456px; */
+  margin-top: 50px;
+  padding-bottom: 50px; 
+  text-align: center;
+  border-bottom: 3px solid goldenrod;
+}
+
+#servicesWrap h2 {
+  color: black;
+  text-transform: uppercase;
+}
+
+#servicesCards hr {
+  width: 65px;
+  border: 0;
+  border-top: 3px solid goldenrod;
+}
+
+#servicesCenterCard .subCardContent {
+  margin-left: 34%;
+  margin-right: 34%;
+}
+
+#servicesCards md-icon {
+    color: #3f51b5;
+    opacity: .7;
+    font-size: 100px;
+    margin-left: -75px;
 }
 
 ul { 
     list-style-type: none;
 }
 
-.hiveInfo {
+/* .hiveInfo {
     width: 80%;
     margin-left: 10%;
     margin-right: 10%;
 }
 
 .cards {
-    width: 100%;
+     width: 100%; 
     height: 500px;
 }
 
 .developers {
     text-align: center;
-}
+    margin-top: 50px;
+    margin-bottom: 20px;
+} */
 
