@@ -1,0 +1,12 @@
+.navbar{
+    bottom: 0;
+    position: relative;
+    width: 100%;
+    border-radius: 0;
+    
+}
+
+.centerMe {
+  margin-left: auto;
+  margin-right: auto;
+}

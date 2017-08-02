@@ -54,6 +54,7 @@ export class MapComponent implements OnInit {
                   },
                   error => {
                     this.loading = false;
+                    this.errorMessage = <any>error; 
                     // console.log("shit bad happend")
                   }
                 )
@@ -88,7 +89,7 @@ export class MapComponent implements OnInit {
   }
   
   //Zoom Level
-  zoom: number = 11;
+  zoom: number = 12;
   //Start Position
   lat: number = 37.75134;
   lng: number = -122.39488;

@@ -59,6 +59,9 @@ export class AddCarComponent implements OnInit {
         this.driver = driver
         this.getMakes(this.driver["vehicle_year"])
         this.getModels(this.driver["vehicle_year"], this.driver["vehicle_make"])
+      },
+      error => {
+            this.errorMessage = <any>error;
       })
   }
 
