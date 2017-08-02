@@ -38,6 +38,7 @@ export class AdminComponent implements OnInit {
     this.dtOptions = {
       paging: true,
       searching: true,
+      destroy: true,
       columns: [
         {
           title: 'ID',
@@ -98,15 +99,15 @@ export class AdminComponent implements OnInit {
             vehs => {
               this.successMessage = "Record(s) deleted succesfully"; 
               this.getLocation("driverinfo");
-              this.loading = false;
             },
             error =>  {
               this.errorMessage = <any>error
               this.loading = false;
             });
       }
-          console.log("deleted")
-          this.loading = false;
+          // console.log("deleted")
+          
+          this.loading = false; 
     });
   }
   
