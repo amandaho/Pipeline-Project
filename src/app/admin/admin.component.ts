@@ -97,17 +97,16 @@ export class AdminComponent implements OnInit {
           .subscribe(
             vehs => {
               this.successMessage = "Record(s) deleted succesfully"; 
-              this.getLocation("driverinfo");
+              location.reload();
             },
             error =>  {
               this.errorMessage = <any>error
               this.loading = false;
             });
       }
-          // console.log("deleted")
-          
           this.loading = false; 
     });
+
   }
   
 

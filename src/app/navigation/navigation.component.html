@@ -29,25 +29,21 @@
     <md-icon>exit_to_app</md-icon> 
   </button>
 
-   <button md-icon-button [mdMenuTriggerFor]="menu"> 
+   <!-- <button md-icon-button [mdMenuTriggerFor]="menu"> 
      <md-icon>live_help</md-icon> 
-   </button> 
+   </button>  -->
+
+   <button md-button [mdMenuTriggerFor]="menu">GitHub <i style="font-size:24px" class="fa">&#xf09b;</i></button>
 
    <md-menu #menu="mdMenu"> 
-    <button md-menu-item disabled>
-      <md-icon>comment</md-icon>
-      <span>Live Chat</span>
-    </button>
-    <button md-menu-item disabled>
-      <md-icon>contact_phone</md-icon>
-      <span>Phone</span>
-    </button>
-    <button md-menu-item disabled>
-      <md-icon>contact_mail</md-icon>
-      <span>Email</span>
-    </button>
+    <a md-menu-item href="https://github.com/amandaho/Pipeline-Project" target="_blank">
+      <md-icon>language</md-icon>
+      <span>Front End</span>
+    </a>
+    <a md-menu-item href="https://github.com/jshales-liberty/auto_data_pipeline_back" target="_blank">
+      <md-icon>https</md-icon>
+      <span>Back End</span>
+    </a>
   </md-menu> 
-  <!-- <button md-fab> Login 
-  </button> -->
 
 </md-toolbar>

@@ -48,7 +48,7 @@
         <td>{{vehs.vehicle_make}}</td>
         <td>{{vehs.vehicle_model}}</td>
         <td class="text-center">
-           <button routerLink="/edit-car/{{vehs.vid}}" md-raised-button class="adminBtn"> 
+           <button [disabled]="loading" routerLink="/edit-car/{{vehs.vid}}" md-raised-button class="adminBtn"> 
             <md-icon>sd_card</md-icon>
             <span>Edit</span>
           </button>        
