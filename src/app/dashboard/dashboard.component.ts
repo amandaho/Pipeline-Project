@@ -15,12 +15,13 @@ export class DashboardComponent implements OnInit {
   drivers: any [];
   driverData;
   loading = false;
+  driver1Test = true;
   selectedDriver1;
   selectedDriver2;
 
   //Default the date to today because Amanda said so
-  eDate;
-  bDate;
+  eDate = moment().format("YYYY-MM-DD");
+  bDate = moment().subtract(5, 'days').format("YYYY-MM-DD");
 
   unixEDate = moment().unix();
   unixBDate = moment().subtract(5, 'days').unix();
@@ -80,6 +81,16 @@ export class DashboardComponent implements OnInit {
 
   }
 
+enableDriver2() {
+  // console.log(this.selectedDriver1)
+  if (this.selectedDriver1 > 0) {
+    this.driver1Test = false;
+  } else {
+    this.driver1Test = true;
+  }
+
+}
+
 onLinkClick($event: any) {
 
   this.loading = true;
@@ -106,7 +117,7 @@ onLinkClick($event: any) {
 
     this.loading = true;
     this.getDrivers("driverinfo");
-    this.runAPI()
+    // this.runAPI()
   }
 
   getDrivers(endpoint:string){

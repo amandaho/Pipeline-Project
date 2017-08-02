@@ -3,7 +3,6 @@
     background-size: cover;
     background-position: center; 
     height: 450px;   
-    background-size: cover;  
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,10 +31,15 @@
   color: #2f2e2e;
 }
 
+#hiveWrapHeader h2 {
+    margin-bottom: 50px;
+}
+
 #hiveWrapHeader hr {
-  width: 300px;
+  width: 100%;
   border: 0;
   border-top: 3px solid goldenrod;
+  margin-bottom: 50px;
 }
 
 #hiveWrapSubHeader h4, li {
@@ -51,7 +55,7 @@
 }
 
 #techUsed {
-    margin-top: 75px;
+    margin-top: 50px;
     /* margin-bottom: 75px; */
     padding: 20px 0 20px 0;
     border-top: 3px solid goldenrod; 

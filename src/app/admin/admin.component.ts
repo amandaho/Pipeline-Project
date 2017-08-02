@@ -83,7 +83,6 @@ export class AdminComponent implements OnInit {
           this.loading = false; 
         }
       )
-
   }
 
   deleteCar(id:number) {
