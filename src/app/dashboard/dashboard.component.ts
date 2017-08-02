@@ -59,7 +59,7 @@ export class DashboardComponent implements OnInit {
   toBeginTimestamp(strDate){
     this.unixBDate = moment(strDate).unix()
     this.timeData.startTime = this.unixBDate;
-    // this.runAPI();     
+    this.runAPI();     
   }
 
   toEndTimestamp(strDate){
