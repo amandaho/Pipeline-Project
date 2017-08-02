@@ -33,6 +33,7 @@ import { AddCarComponent } from './add-car/add-car.component';
 import { DeleteConfirmComponent } from './delete-confirm/delete-confirm.component';
 import { AuthGuard } from './auth-guard';
 import { DataTablesModule } from 'angular-datatables';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { DataTablesModule } from 'angular-datatables';
     CreateAccountComponent,
     AddCarComponent,
     DeleteConfirmComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

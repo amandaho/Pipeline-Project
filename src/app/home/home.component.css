@@ -108,20 +108,13 @@ ul {
     list-style-type: none;
 }
 
-/* .hiveInfo {
-    width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
-}
-
-.cards {
-     width: 100%; 
-    height: 500px;
-}
-
 .developers {
     text-align: center;
     margin-top: 50px;
     margin-bottom: 20px;
-} */
+}
+
+.cards {
+    margin-bottom: 50px;
+}
 
