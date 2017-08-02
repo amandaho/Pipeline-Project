@@ -13,7 +13,7 @@ import { AddCarComponent }   from '../add-car/add-car.component';
 import { AuthGuard } from '../auth-guard';
 
 const router: Routes = [
-  { path: '', component: LoginComponent, canActivate: [AuthGuard] },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'home',  component: HomeComponent },
   { path: 'map',  component: MapComponent },
   { path: 'admin',  component: AdminComponent },
@@ -24,7 +24,7 @@ const router: Routes = [
   { path: 'edit-car/:id', component: AddCarComponent },
 
   // otherwise redirect to home
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: 'home' }
 ];
 
 export const routes = RouterModule.forRoot(router)
